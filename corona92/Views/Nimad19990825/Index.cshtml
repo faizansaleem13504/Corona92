@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h2>ADMIN PANEL : </h2>
+    <form asp-controller="Nimad19990825" asp-action="UploadFile" method="post"
+          enctype="multipart/form-data">
+
+        <input type="file" name="file" />
+
+        <button type="submit">Update Database File</button>
+    </form>
+    <form asp-controller="Nimad19990825" asp-action="UploadResources" method="post"
+          enctype="multipart/form-data">
+
+        <input type="file" name="file" />
+
+        <button type="submit">Upload Resources</button>
+    </form>
+    @* <form a method="get" action="../../Nimad19990825/updateToDatabase">
+            <button type="submit">Upload To Database The data.csv File</button>
+        </form>*@
+</body>
+</html>
