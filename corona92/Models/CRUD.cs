@@ -52,6 +52,44 @@ namespace corona92.Models
 
             }
         }
+        public static List<news> getNews()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            SqlCommand cmd;
+
+            try
+            {
+                cmd = new SqlCommand("SELECT * FROM newsTab", con);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                List<news> list = new List<news>();
+                while (rdr.Read())
+                {
+                    news cases = new news();
+
+                    cases.id = rdr["id"].ToString();
+                    cases.newsText = rdr["news"].ToString();
+                    cases.date = rdr["date"].ToString();
+                    list.Add(cases);
+                }
+                rdr.Close();
+                con.Close();
+
+                return list;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error" + ex.Message.ToString());
+                return null;
+
+            }
+        }
+
+
+       
         public static void updateDB(IFormFile file)
         {
             String province, city;
@@ -60,7 +98,6 @@ namespace corona92.Models
             var csvTable = new DataTable();
             var result = new StringBuilder();
             String line;
-            bool initFlag = false;
             String[] values;
             try
             {
@@ -146,5 +183,99 @@ namespace corona92.Models
              }*/
 
         }
+        public static List<HospitalData> getHospitalData()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            SqlCommand cmd;
+
+            try
+            {
+                cmd = new SqlCommand("SELECT * FROM hospitalData", con);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                List<HospitalData> list = new List<HospitalData>();
+                while (rdr.Read())
+                {
+                    HospitalData hdata = new HospitalData();
+
+                    hdata.name = rdr["name"].ToString();
+                    hdata.province = rdr["province"].ToString();
+                    hdata.city = rdr["city"].ToString();
+                    hdata.address = rdr["address"].ToString();
+                    hdata.latitude = float.Parse(rdr["lat"].ToString());
+                    hdata.longitude = float.Parse(rdr["lng"].ToString());
+                    list.Add(hdata);
+                }
+                rdr.Close();
+                con.Close();
+
+                return list;
+            }
+
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error" + ex.Message.ToString());
+                return null;
+
+            }
+        }
+        public static void updateNews(IFormFile file)
+        {
+            String id;
+            String news, date;
+
+            var csvTable = new DataTable();
+            var result = new StringBuilder();
+            String line;
+            String[] values;
+            int count = 0;
+            try
+            {
+                using (var reader = new StreamReader(file.OpenReadStream()))
+                {
+                    SqlConnection con = new SqlConnection(connectionString);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("Delete From newsTab", con);
+                    cmd.ExecuteNonQuery();
+                    line = reader.ReadLine();
+                    while (reader.Peek() >= 0)
+                    {
+                        line = reader.ReadLine();
+                        values = line.Split('\t');
+                        if (values.Length == 3)
+                        {
+                            id = values[0].ToString();
+                            news = values[1].ToString();
+                            date = values[2].ToString();
+                            if (news.Contains("'"))
+                            {
+                                news = news.Replace("'", "''");
+
+                            }
+                            cmd = new SqlCommand("insert into newsTab values('" + id + "','"
+                          + news + "','" + date + "')", con);
+                            cmd.ExecuteNonQuery();
+                            count++;
+                            if (count == 15)
+                                break;
+                        }
+                        // result.AppendLine(reader.ReadLine());
+
+                        // cmd = new SqlCommand("UPDATE [dbo].[covidCase] SET [confirmed]  "= Integer., [deaths]  = value2,[recovered] WHERE [province] AND [city] condition; ", con);
+                        // cmd.CommandType = System.Data.CommandType.Text;
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error" + ex.Message.ToString());
+            }
+
+        }
+
     }
 }

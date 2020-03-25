@@ -4,70 +4,81 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - corona92</title>
+    <link href="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90443139_652020338892649_5884023062860398592_o.png?_nc_cat=110&_nc_sid=730e14&_nc_ohc=f3giBU_aPXgAX_fytrZ&_nc_ht=scontent.flhe5-1.fna&oh=6d352108b1d72ba112f43b53e6464f5c&oe=5E9BE5D8" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
         .header {
-            margin-top: 50px;
+            margin-top: 70px;
             padding: 20px;
             text-align: center;
-            background: #bfffbf;
+            background: white;
             color: white;
         }
 
-        .navbar-nav .nav-item .nav-link {
-            color: black;
+        .navbar-nav {
+            font-family: Calibri;
+            font-weight: 500;
+            font-style: italic;
         }
 
-        .navbar-nav .nav-item.active .nav-link, .navbar-nav .nav-item:hover .nav-link {
-            color: #bfffbf;
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+
+        .apply {
+            font-family: 'Bebas Neue';
+            margin-top: 40px;
+            margin-left: 20px;
+            font-size: 50px;
+            text-align: center;
+            color: black;
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm bg-success navbar-dark fixed-top">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" style="font-size:2em" href="../../Home/Index">Corona92</a>
-            <div class="collapse navbar-collapse ml-3" id="myMenu">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand navbar-dark fixed-top" style="background-color:#006b38ff">
+                <a class="navbar-brand" href="../../Home/Index">
+                    <img src="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90182566_652401992187817_2041416033306148864_o.jpg?_nc_cat=102&_nc_sid=730e14&_nc_eui2=AeFKQeoFifgSlR_ValD_-mcuU4SFVU2SKYUaMlHUSjy2luRVNyHAJUe9Xt2N6FXCs0aNC5WyFC-rT_HppPIWzZifGYpq0O1IAUpQ8ldKBU-p3w&_nc_ohc=MZkkpUpGKh0AX-SMPAo&_nc_ht=scontent.flhe5-1.fna&oh=d4c2161abb43190e57427d9d40444a27&oe=5E9C9B7B"
+                         alt="Corona92" style="width:160px; height:40px;">
+                </a>
+                &nbsp;
+                <ul class="navbar-nav" style="font-size:medium">
+                    <li class="nav-item text-center" style="float:right;">
                         <a class="nav-link" href="../../Home/Index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../Home/StatsPage">COVID-19 Stats</a>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="../../Home/StatsPage">COVID-19 Response</a>
                     </li>
                 </ul>
-                </div>
-        </nav>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">corona92</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>*@
-        <div class="header">
-            <a href="../../Home/Index">
-                <img src="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90295137_104305431206483_1879738376064598016_n.png?_nc_cat=109&_nc_sid=85a577&_nc_ohc=LGxrmMZ1xMsAX-pvYhL&_nc_ht=scontent.flhe5-1.fna&oh=a8e830cf0cc66a0274777f26183018b9&oe=5E98D186"
-                     alt="Corone92" width="300" height="200">
-            </a>
+            </nav>
         </div>
+
+
+
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <a href="../../Home/Index">
+                        <img class="img-fluid" src="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90443139_652020338892649_5884023062860398592_o.png?_nc_cat=110&_nc_sid=730e14&_nc_ohc=f3giBU_aPXgAX_fytrZ&_nc_ht=scontent.flhe5-1.fna&oh=6d352108b1d72ba112f43b53e6464f5c&oe=5E9BE5D8"
+                             alt="Corona92" width="150" height="100" />
+                    </a>
+                    <a href="../../Home/Index" style="text-decoration:none">
+                        <h1 class="apply">C O V I D - 1 9  &nbsp;  P a k i s t a n</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </header>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -81,11 +92,11 @@
     @RenderSection("Scripts", required: false)
 
 
-    <div style="margin-top:50px">
+    <div style="margin-top:100px;">
         <footer class="border-top footer text-muted">
-            <div class="container">
+            <div class="container" style="color:#006b38ff">
 
-                &copy; 2020 - corona92 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; 2020 - corona92 @*- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
             </div>
 
         </footer>

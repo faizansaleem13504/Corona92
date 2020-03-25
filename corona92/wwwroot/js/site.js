@@ -1,29 +1,25 @@
 ﻿// Write your JavaScript code.
 
-document.addEventListener("DOMContentLoaded", function () {
-    // showMap();
-});
-
-function myfoo() {
-
-    var lat = new Array(1)
-    var long = new Array(1)
-    lat[0] = 31.549722;
-    long[0] = 74.343611;
-    var infected = 6;
-    var circle = L.circle([lat[0], long[0]], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 10000 * infected
-    }).addTo(mymap).bindPopup("Infected: " + infected.toString(10));
 
 
+var infectedData = [];
+var hospitalData = [];
+var infectedLayer = null;
+var hospitalLayer = null;
+var map = null;
+var currentLocMarker = null;
+var currentLocCircle = null;
+var data = null;
+var hdata = null;
+var provinces = [];
+var provinceCount = [];
+var cities = [];
+var cityCount = [];
+function initializeData(data1, data2) {
+    data = data1;
+    hdata = data2;
 }
-
-
-
-function addBaseMaps(map) {
+function addBaseMaps() {
     /*
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
         maxZoom: 18,
@@ -51,11 +47,9 @@ function addBaseMaps(map) {
     }).addTo(map);
 }
 
-function addInfectedCities(map, data) {
+function addInfectedCities() {
     for (var d in data) {
         // window.alert(data[d]["province"]);
-        var lat = data[d]["latitude"];
-        var long = data[d]["longitude"];
         if (data[d]["confirmed"] !== 0) {
             if (data[d]["latitude"] !== 0.0) {
                 //window.alert(data[d]["city"]);
@@ -63,24 +57,128 @@ function addInfectedCities(map, data) {
                 t_data.className = "tooltipmapdata";
                 t_data.innerHTML = "<b>" + data[d]["city"] + "</b><br>Confirmed&nbsp " + data[d]["confirmed"].toString(10) + "<br>Deaths &nbsp&nbsp&nbsp&nbsp&nbsp " + data[d]["deaths"].toString(10) + "<br>Recovered " + data[d]["recovered"].toString(10);
 
-                L.circle([data[d]["latitude"], data[d]["longitude"]], {
+                var circle = L.circle([data[d]["latitude"], data[d]["longitude"]], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.8,
-                    radius: 5000 * Math.log(data[d]["confirmed"])
-                }).addTo(map).bindTooltip(t_data);
+                    radius: 5000 * Math.log(data[d]["confirmed"]+1)
+                }).bindTooltip(t_data);
+                infectedData.push(circle);
             }
         }
     }
+    infectedLayer = L.layerGroup(infectedData);
+}
+function addHospitals() {
+    var hIcon = L.icon({
+        iconUrl: '../images/hospital.png',
+        iconSize: [24, 24],
+    });
+    for (var d in hdata) {
+        var t_data = document.createElement("p");
+        t_data.className = "tooltipmapdata";
+        t_data.innerHTML = "<b>" + hdata[d]["name"] + "</b><br> " + hdata[d]["address"] + "<br>" + hdata[d]["city"] + "<br>" + hdata[d]["province"];
+       try {
+           hospitalData.push(L.marker([hdata[d]["latitude"], hdata[d]["longitude"]], { icon: hIcon }).bindPopup(t_data, { closeButton: false }));
+        }
+        catch (err) {
+            //alert(err);
+        }
+    }
+    //alert("Hospital marker created.");
+    hospitalLayer = L.layerGroup(hospitalData);
+    //alert("hospital Layer is completed.");
+}
+function showInfectedLayer() {
+    infectedLayer.addTo(map);
+    //hospitalLayer.removeLayer(map);
 }
 
-function showMap(data) {
+function showInfectedLayerWrapper() {
+    try {
+        map.removeLayer(hospitalLayer);
+    }
+    catch (err) {
+        //alert(err);
+    }
+    
+    map.addLayer(infectedLayer);
+    //alert("Infected Layer added");
+}
+function showHospitalLayerWrapper() {
+    map.removeLayer(infectedLayer);
+    map.addLayer(hospitalLayer);
+    //alert("Hospital Layer added");
+}
+function showMap() {
 
-    var map = L.map('mapid').setView([30.580470, 71.041105], 5);
+    map = L.map('mapid').setView([30.580470, 71.041105], 5);
     //window.alert("map set");
     addBaseMaps(map);
     //window.alert("base maps added");
-    var ab = "mub";
-    addInfectedCities(map, data);
+    addInfectedCities();
+    showInfectedLayerWrapper();
+    addHospitals();
     //window.alert("infected cities added");
 }
+
+
+function getLocationLeaflet() {
+    if (currentLocMarker === null) {
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        map.locate({ setView: true, maxZoom: 10 });
+    }
+    else {
+        map.removeLayer(currentLocMarker);
+        map.removeLayer(currentLocCircle);
+        currentLocMarker = null;
+        currentLocCircle = null;
+        map.setView([30.580470, 71.041105], 5);
+        //map.locate({ setView: true, maxZoom: 18 });
+    }
+}
+
+function onLocationFound(e) {
+    if (currentLocMarker === null) {
+        var radius = e.accuracy / 10;
+        var location = e.latlng;
+        currentLocMarker = L.marker(location);
+        currentLocCircle = L.circle(location, radius);
+        map.addLayer(currentLocMarker);
+        map.addLayer(currentLocCircle);
+    }
+}
+
+function onLocationError(e) {
+    //alert(e.message);
+}
+
+function checkJson() {
+    for (var d in data) {
+        //var city = data[d]["city"];
+        if (data[d]["confirmed"] !== 0) {
+            if (data[d]["city"] === "Islamabad") {
+                cities.push(data[d]["city"]);
+                cityCount.push(data[d]["confirmed"]);
+                provinces.push(data[d]["province"]);
+                provinceCount.push(data[d]["confirmed"]);
+            }
+            else if (data[d]["city"] === "Total") {
+                if (data[d]["province"] !== "Pakistan") {
+                    provinces.push(data[d]["province"]);
+                    provinceCount.push(data[d]["confirmed"]);
+                   
+                }
+            }
+            else{
+                cities.push(data[d]["city"]);
+                cityCount.push(data[d]["confirmed"]);
+            }
+        }
+    }
+   
+   
+}
+

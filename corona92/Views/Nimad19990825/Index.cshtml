@@ -26,6 +26,13 @@
 
         <button type="submit">Upload Resources</button>
     </form>
+    <form asp-controller="Nimad19990825" asp-action="UploadNews" method="post"
+          enctype="multipart/form-data">
+
+        <input type="file" name="file" />
+
+        <button type="submit">Update News</button>
+    </form>
     @* <form a method="get" action="../../Nimad19990825/updateToDatabase">
             <button type="submit">Upload To Database The data.csv File</button>
         </form>*@

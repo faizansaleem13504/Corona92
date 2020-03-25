@@ -52,10 +52,10 @@ namespace corona92.Controllers
             if (file == null || file.Length == 0)
                 return Content("file not selected");
             var webRoot = _env.WebRootPath;
-            var path = Path.Combine(
-                              webRoot,
+             var path = Path.Combine(
+                               webRoot,"images",
                               file.FileName);
-                  if (!Directory.Exists(webRoot))
+            if (!Directory.Exists(webRoot))
                  {
                     Directory.CreateDirectory(webRoot);
                   }
@@ -69,6 +69,11 @@ namespace corona92.Controllers
         public ActionResult updateToDatabase()
         {
            // CRUD.updateDB();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> UploadNews(IFormFile file)
+        {
+            CRUD.updateNews(file);
             return RedirectToAction("Index");
         }
     }

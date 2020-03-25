@@ -15,22 +15,29 @@
 
     <style>
         body {
-            background: #bfffbf;
-            margin-top: 7px;
-            margin-bottom: 7px;
+            background-color: white;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
+        .btn-sm:hover {
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+        }
     </style>
+    <script>
+
+
+    </script>
 </head>
 <body>
     <br /><br />
     <!-- ADD BODY BELOW -->
-          <lead style="font-size:medium">
-              Considering the chaos created by epidemic, we intend to bring life back and let our viewers know the current situation in Pakistan.We are striving to keep you updated and provide all the neccessary information.We conducted a survey to know the reaction of Pakistani society towards the rising epidemic. We gathered data from twitter
-              to know about individual's attitude towards the virus. <br />
-              After analyzing the information, We got the following graphs showing the overal attitude of society towards the
-              pandemic
-          </lead><br /><br />
+    <lead style="font-size:medium">
+        Considering the chaos created by epidemic, we intend to bring life back and let our viewers know the current situation in Pakistan.We are striving to keep you updated and provide all the neccessary information.We conducted a survey to know the reaction of Pakistani society towards the rising epidemic. We gathered data from twitter
+        to know about individual's attitude towards the virus. <br />
+        After analyzing the information, We got the following graphs showing the overal attitude of society towards the
+        pandemic
+    </lead><br /><br />
     <!-- Grid row -->
     <div class="row">
 
@@ -51,7 +58,7 @@
 
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="~/images/userEngage.jpeg"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.userEngage)"
                                         allowfullscreen></iframe>
                             </div>
 
@@ -70,12 +77,10 @@
 
 
 
-
             <!--LINK TO PICTURE 1st-->
-
             <a>
-                <img class="img-fluid z-depth-1" src="~/images/userEngage.jpeg"  alt="image"
-                data-toggle="modal" data-target="#modal1">
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.userEngage)" alt="image"
+                     data-toggle="modal" data-target="#modal1">
             </a>
 
 
@@ -98,7 +103,7 @@
 
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="~/images/twitter.jpeg"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.twitter)"
                                         allowfullscreen></iframe>
                             </div>
 
@@ -126,7 +131,7 @@
             <!--LINK TO PICTURE 2nd-->
 
             <a>
-                <img class="img-fluid z-depth-1" src="~/images/twitter.jpeg" alt="image"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.twitter)" alt="image"
                      data-toggle="modal" data-target="#modal6">
             </a>
 
@@ -147,7 +152,7 @@
 
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="~/images/satisfaction.jpeg"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.satisfaction)"
                                         allowfullscreen></iframe>
                             </div>
 
@@ -172,7 +177,7 @@
             <!--LINK TO PICTURE 3rd-->
 
             <a>
-                <img class="img-fluid z-depth-1" src="~/images/satisfaction.jpeg" alt="video"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.satisfaction)" alt="video"
                      data-toggle="modal" data-target="#modal4">
             </a>
 
@@ -195,7 +200,7 @@
 
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="~/images/relatives.jpeg"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.relatives)"
                                         allowfullscreen></iframe>
                             </div>
 
@@ -220,23 +225,22 @@
             <!--LINK TO PICTURE 4th-->
 
             <a>
-                <img class="img-fluid z-depth-1" src="~/images/relatives.jpeg" alt="video"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.relatives)" alt="video"
                      data-toggle="modal" data-target="#modal2">
             </a>
 
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
-       
-
         <!-- Grid column -->
         <!-- Grid column -->
-       
         <!-- Grid column -->
 
     </div>
     <!-- Grid row -->
-
+    <div class="container-fluid mt-5">
+        <a href="../../Home/Index" class="btn-sm align-self-start" style="background-color:#006b38ff; color:white; " role="button">Click Here for Home</a>
+    </div>
 
 </body>
 
