@@ -7,17 +7,13 @@
     int countRecovered = 0;
 }
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 <!DOCTYPE html>
 <html>
 <head>
-
-    <!-- CHANGING
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+    <meta name="keywords" content="COVID-19,coronavirus,pakistan,cities,hospital,map" />
+    <meta name="description" content="COVID-19 is triggering panic across the globe. Get the latest updates on coronovirus in Pakistan. Also, check out our map to locate the infected cities and hospitals."/>
             <!--Start Including Map Related Links-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -48,7 +44,7 @@
         }
     }
     <div class="container-fluid">
-        <marquee behavior="scroll" direction="left" style="font-size:small">DISCLAIMER : The information published is taken from Dawn News and cross checked with different other sources (NEWS Channels and government bodies official statements). As in some cases, the Provincial and Federal stats do not match, so we follow the INFORMATION provided by the Provincial Government</marquee>
+        <marquee behavior="scroll" direction="left" style="font-size:small" onmouseover="this.stop();" onmouseout="this.start();">DISCLAIMER : The information published here is taken from a reliable source and cross checked with multiple News Channels and Government Bodies Official Statements. As in some cases, the Provincial and Federal stats do not match, so we follow the INFORMATION provided by the Provincial Government. For more information visit our <a href="https://www.facebook.com/Corona0092/"> Facebook Page </a> </marquee>
 
         <div class="row" style="font-size:small">
             <div class="col-12">
@@ -58,7 +54,7 @@
 
                         <div class="container-fluid ">
                             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px; ">
-                                <div class="d-flex flex-row-reverse bg-dark p-2">
+                                <div class="d-flex flex-row-reverse bg-dark p-2" >
 
                                     <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin:10px ;">
                                         <div class="mb-1">Total Recovered</div>
@@ -100,12 +96,20 @@
                                         </thead>
                                         <tbody>
                                             @{
+                                                var cityname = "";
                                                 foreach (var cases in Model)
                                                 {
-                                                    if (@cases.confirmed != 0 && cases.latitude != 0)
+                                                    if ((@cases.confirmed != 0  || cases.deaths!= 0 || cases.recovered != 0) && cases.longitude != 0)
                                                     {
+                                                        cityname = @cases.city;
+                                                        if (@cases.longitude == 1)
+                                                        {
+                                                            cityname = "Unspecified Cities";
+                                                        }
+
+
                                                         <tr>
-                                                            <td>@cases.city</td>
+                                                            <td>@cityname</td>
                                                             <td>@cases.province</td>
                                                             <td>@cases.confirmed</td>
                                                             <td>@cases.deaths</td>
@@ -144,7 +148,7 @@
 
 
                         <div class="container-fluid p-4">
-                            <a href="../../Home/StatsPage">-> See Response Statistics Here</a>
+                            <a href="../../Home/Analysis">-> See Response Statistics Here</a>
                             &nbsp;
                             &nbsp;
                             <a href="https://www.facebook.com/Corona0092/">  -> Facebook </a>
@@ -166,53 +170,35 @@
             Corona Density
         </span>
     </div>
-
-
     <br /><br />
-
-
-
-
-
-
-
     <!--MAPS -->
-    <div id="mapid" style="width: 600px; height: 500px;margin:auto">
-        <div class="leaflet-top leaflet-right" style="margin:10px; pointer-events:auto">
-            <div class="btn-group">
-                <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default " onclick="showInfectedLayerWrapper()">Infections</button>
-                <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default" onclick="showHospitalLayerWrapper()">Hospitals</button>
-            </div>
-        </div>
-        <div class="leaflet-bottom leaflet-left" style="margin:10px; pointer-events:auto">
-            <input type="image" src="~/images/pin.png" onclick="getLocationLeaflet()" width="48" height="48">
-        </div>
-    </div>
+          <div id="mapid" style="width: 600px; height: 500px;margin:auto">
+              <div id="mapbuttondiv" class="leaflet-top leaflet-right" style="margin:10px; pointer-events:auto;display:none">
+                  <div class="btn-group">
+                      <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default " onclick="showInfectedLayerWrapper()">Infections</button>
+                      <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default" onclick="showHospitalLayerWrapper()">Hospitals</button>
+                  </div>
+              </div>
+              <div id="locationicondiv" class="leaflet-bottom leaflet-left" style="margin:10px; pointer-events:auto;display:none">
+                  <input type="image" src="~/images/pin.png" onclick="getLocationLeaflet()" width="48" height="48">
+              </div>
+          </div>
     <!-- MAP END -->
-    @* <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center; margin-bottom:30px;">
+    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center; margin-bottom:30px;">
             <span style="font-size: 25px; font-family:Calibri; font-weight:700;font-style:italic; background-color: white; padding: 0 10px;">
                 Corona Growth
             </span>
         </div>
-
-        <!-- PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE PIE CHARTS STARTS HERE -->
-
-
+        <!-- PIE CHARTS STARTS HERE -->
         <div class="container-fluid">
+            <p id="comingsoon"></p>
             <!-- Canvas element will display the chart -->
             <canvas id="myChart"></canvas>
             <canvas id="myChart2"></canvas>
-        </div>*@
-
-
-
+        </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    
-
-
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -252,9 +238,7 @@
         }
     </script>
 
-
     <script>
-
         function myFunction(imgs) {
             var expandImg = document.getElementById("expandedImg");
             var imgText = document.getElementById("imgtext");
@@ -263,11 +247,7 @@
             expandImg.parentElement.style.display = "block";
         }
     </script>
-
-
     <script src="~/js/makeCharts.js" language="javascript" type="text/javascript"></script>
-
-
 </body>
 
 </html>

@@ -27,19 +27,22 @@ namespace corona92.Controllers
             ViewBag.hospitalData = ajson;
             return View(CRUD.getCases());
         }
-        public IActionResult About()
+        public IActionResult Response()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewBag.image1 = @"~/images/image1.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.image2 = @"~/images/image2.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.image3 = @"~/images/image3.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.image4 = @"~/images/image4.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.image5 = @"~/images/image5.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.image6 = @"~/images/image6.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
 
             return View();
         }
-
-        public IActionResult Contact()
+        public IActionResult Awareness()
         {
-            ViewData["Message"] = "Your contact page.";
             return View();
         }
-        public IActionResult StatsPage()
+        public IActionResult Analysis()
         {
 
             ViewBag.userEngage = @"~/images/userEngage.jpeg?"+DateTime.Now.ToString("HHmmsskkk");

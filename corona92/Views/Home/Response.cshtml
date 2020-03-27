@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewData["Title"] = "Covid-19 Response";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="measures" />
+    <meta name="description" content="Get valuable insights on the measures taken by the government and also track the response of public towards the rising coronavirus situation in Pakistan" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-sm:hover {
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <br /><br />
+    <!-- ADD BODY BELOW -->
+          <lead style="font-size:medium">
+              We conducted a survey to know the reaction of Pakistani society towards the rising epidemic. We gathered data to know about individual's attitude towards the virus.
+          </lead><br /><br />
+    <!-- Grid row -->
+                 <div class="row">
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-sm-12">
+                         <!--   1st GRID PICTURE -->
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image1)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--Content-->
+                             </div>
+                         </div>
+                         <!--LINK TO PICTURE 1st-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image1)" alt="image"
+                                  data-toggle="modal" data-target="#modal1">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-12">
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image2)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--/.Content-->
+                             </div>
+                         </div>
+                         <!--LINK TO PICTURE 2nd-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image2)" alt="image"
+                                  data-toggle="modal" data-target="#modal6">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-sm-12">
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image3)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--/.Content-->
+                             </div>
+                         </div>
+                         <br /><br />
+                         <!--LINK TO PICTURE 3rd-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image3)" alt="video"
+                                  data-toggle="modal" data-target="#modal4">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <br /><br />
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-sm-12">
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image4)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--/.Content-->
+                             </div>
+                         </div>
+                         <br />><br />
+                         <!--LINK TO PICTURE 4th-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image4)" alt="video"
+                                  data-toggle="modal" data-target="#modal2">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-sm-12">
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image5)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--/.Content-->
+                             </div>
+                         </div>
+                         <br />><br />
+                         <!--LINK TO PICTURE 4th-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image5)" alt="video"
+                                  data-toggle="modal" data-target="#modal2">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                     <div class="col-md-6 col-sm-12">
+                         <!--Modal: Name-->
+                         <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg" role="document">
+                                 <!--Content-->
+                                 <div class="modal-content">
+                                     <!--Body-->
+                                     <div class="modal-body mb-0 p-0">
+                                         <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                             <!-- ADD LINK TO DATA SOURCE HERE-->
+                                             <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.image6)"
+                                                     allowfullscreen></iframe>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!--/.Content-->
+                             </div>
+                         </div>
+                         <br />><br />
+                         <!--LINK TO PICTURE 4th-->
+                         <a>
+                             <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.image6)" alt="video"
+                                  data-toggle="modal" data-target="#modal2">
+                         </a>
+                     </div>
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                     <!-- Grid column -->
+                 </div>
+    <!-- Grid row -->
+    <div class="container-fluid mt-5">
+        <a href="../../Home/Index" class="btn-sm align-self-start" style="background-color:#006b38ff; color:white; " role="button">Click Here for Home</a>
+    </div>
+</body>
+</html>

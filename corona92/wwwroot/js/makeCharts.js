@@ -97,7 +97,7 @@ renderIndividualProvince = function (ctx, chartLabels, chartValues, provinceName
         options: {
             title: {
                 display: true,
-                text: 'Corona Cases in ' + provinceName + ' Province',
+                text: 'Corona Cases in Cities',
                 fontSize: 25,
             },
             legend: {
@@ -158,18 +158,4 @@ renderProvinceChart = function (ctx, chartLabels, chartValues) {    //non-line a
         }
     },
     );
-}
-
-//id of div canvas is used to display a chart
-var ctx = document.getElementById("myChart").getContext('2d');
-
-
-renderProvinceChart(ctx, provinces, provinceCount);
-
-//id of div canvas is used to display a chart
-var ctx2 = document.getElementById("myChart2").getContext('2d');
-
-
-//Same as above function.
-//Only receives the province name
-renderIndividualProvince(ctx2, cities, cityCount, "Punjab")
+}    

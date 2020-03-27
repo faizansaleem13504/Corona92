@@ -18,7 +18,10 @@ var cityCount = [];
 function initializeData(data1, data2) {
     data = data1;
     hdata = data2;
+    document.getElementById("locationicondiv").style.display = "block";
+    document.getElementById("mapbuttondiv").style.display = "block";
 }
+
 function addBaseMaps() {
     /*
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
@@ -61,7 +64,7 @@ function addInfectedCities() {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.8,
-                    radius: 5000 * Math.log(data[d]["confirmed"]+1)
+                    radius: 5000 * Math.log(data[d]["confirmed"] + 1)
                 }).bindTooltip(t_data);
                 infectedData.push(circle);
             }
@@ -78,8 +81,8 @@ function addHospitals() {
         var t_data = document.createElement("p");
         t_data.className = "tooltipmapdata";
         t_data.innerHTML = "<b>" + hdata[d]["name"] + "</b><br> " + hdata[d]["address"] + "<br>" + hdata[d]["city"] + "<br>" + hdata[d]["province"];
-       try {
-           hospitalData.push(L.marker([hdata[d]["latitude"], hdata[d]["longitude"]], { icon: hIcon }).bindPopup(t_data, { closeButton: false }));
+        try {
+            hospitalData.push(L.marker([hdata[d]["latitude"], hdata[d]["longitude"]], { icon: hIcon }).bindPopup(t_data, { closeButton: false }));
         }
         catch (err) {
             //alert(err);
@@ -101,7 +104,7 @@ function showInfectedLayerWrapper() {
     catch (err) {
         //alert(err);
     }
-    
+
     map.addLayer(infectedLayer);
     //alert("Infected Layer added");
 }
@@ -111,14 +114,30 @@ function showHospitalLayerWrapper() {
     //alert("Hospital Layer added");
 }
 function showMap() {
+    if (deviceType() == "Mobile") {
+        document.getElementById("mapid").style.width = "auto";
+        document.getElementById("mapid").style.height = "400px";
+        map = L.map('mapid').setView([30.580470, 71.041105], 4);
+        //window.alert("map set");
+        addBaseMaps(map);
+        //window.alert("base maps added");
+        addInfectedCities();
+        showInfectedLayerWrapper();
+        addHospitals();
 
-    map = L.map('mapid').setView([30.580470, 71.041105], 5);
-    //window.alert("map set");
-    addBaseMaps(map);
-    //window.alert("base maps added");
-    addInfectedCities();
-    showInfectedLayerWrapper();
-    addHospitals();
+    }
+    else {
+        //document.getElementById("mapid").style.width = "unset";
+        //document.getElementById("mapid").style.height = "unset";
+        map = L.map('mapid').setView([30.580470, 71.041105], 5);
+        //window.alert("map set");
+        addBaseMaps(map);
+        //window.alert("base maps added");
+        addInfectedCities();
+        showInfectedLayerWrapper();
+        addHospitals();
+    }
+   
     //window.alert("infected cities added");
 }
 
@@ -135,7 +154,14 @@ function getLocationLeaflet() {
         map.removeLayer(currentLocCircle);
         currentLocMarker = null;
         currentLocCircle = null;
-        map.setView([30.580470, 71.041105], 5);
+        if (deviceType() == "Mobile") {
+            map.setView([30.580470, 71.041105], 4);
+        }
+        else {
+            map.setView([30.580470, 71.041105], 5);
+        }
+
+        
         //map.locate({ setView: true, maxZoom: 18 });
     }
 }
@@ -156,6 +182,8 @@ function onLocationError(e) {
 }
 
 function checkJson() {
+    var otherCount = 0;
+    var lowCount = 0;
     for (var d in data) {
         //var city = data[d]["city"];
         if (data[d]["confirmed"] !== 0) {
@@ -169,16 +197,83 @@ function checkJson() {
                 if (data[d]["province"] !== "Pakistan") {
                     provinces.push(data[d]["province"]);
                     provinceCount.push(data[d]["confirmed"]);
-                   
+
                 }
             }
-            else{
-                cities.push(data[d]["city"]);
-                cityCount.push(data[d]["confirmed"]);
+            else {
+                if (data[d]["city"] === "Others") {
+                    otherCount = otherCount + data[d]["confirmed"];
+                } else if (data[d]["confirmed"] < 15) {
+                    lowCount = lowCount + data[d]["confirmed"];
+                }
+                else {
+                    cities.push(data[d]["city"]);
+                    cityCount.push(data[d]["confirmed"]);
+                }
+
             }
         }
     }
-   
-   
+
+    cities.push("Unspecified Cities");
+    cityCount.push(otherCount);
+    cities.push("Other Cities (Cumulative)");
+    cityCount.push(lowCount);
+    console.log("button pressed");
+    if (deviceType() == "Mobile") {
+        document.getElementById("comingsoon").innerHTML = "Coming soon on Mobile ......";
+        //document.getElementById("myChart").width = "300px";
+        //document.getElementById("myChart").height = "300px";
+        //document.getElementById("myChart2").width = "300px";
+        //document.getElementById("myChart2").height = "300px";
+
+    }
+    else {
+        //id of div canvas is used to display a chart
+        
+
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+
+
+        renderProvinceChart(ctx, provinces, provinceCount);
+
+        //id of div canvas is used to display a chart
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+
+
+        //Same as above function.
+        //Only receives the province name
+        renderIndividualProvince(ctx2, cities, cityCount, 'Punjab');    
+    }
 }
 
+function setVid() {
+    try {
+        if (deviceType() == "Mobile") {
+            document.getElementById("videoframe").width = "300";
+            document.getElementById("videoframe").height = "168";
+        }
+        else {
+
+        }
+    }
+    catch(err){
+
+    }
+}
+function deviceType() {
+    var OSName = "Mobile";
+    if (navigator.appVersion.indexOf("Win") != -1 && navigator.appVersion.indexOf("Phone") === -1) OSName = "Windows";
+    if (navigator.appVersion.indexOf("Macintosh") != -1) OSName = "MacOS";
+    if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
+    if (navigator.appVersion.indexOf("Linux") != -1 && navigator.appVersion.indexOf("Android") === -1) OSName = "Linux";
+    if (navigator.appVersion.indexOf("facebook.com") != -1) OSName = "facebook";
+    if (navigator.appVersion.indexOf("bot") != -1) OSName = "bot";
+    if (navigator.appVersion.indexOf("Slerp") != -1) OSName = "bot";
+    return OSName;
+}
+
+function checkString() {
+    alert("string");
+}
