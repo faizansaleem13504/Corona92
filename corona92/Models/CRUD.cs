@@ -13,7 +13,6 @@ namespace corona92.Models
     public static class CRUD
     {
         public static string connectionString = " Data Source = 43.255.152.25;Database=covid92; Integrated Security = False; User ID = corona92;Password=Faizan1!; Connect Timeout = 15; Encrypt=False;Packet Size = 4096";
-        //public static string connectionString = "Data Source=DESKTOP-LND9IL3;Initial Catalog=covid92;Integrated Security=True";
         public static List<covidCase> getCases()
         {
             SqlConnection con = new SqlConnection(connectionString);

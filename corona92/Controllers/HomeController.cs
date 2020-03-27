@@ -25,7 +25,6 @@ namespace corona92.Controllers
 
             var ajson = JsonConvert.SerializeObject(CRUD.getHospitalData());
             ViewBag.hospitalData = ajson;
-            //return RedirectToAction("Index", "Nimad19990825");
             return View(CRUD.getCases());
         }
         public IActionResult Response()
