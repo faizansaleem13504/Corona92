@@ -13,6 +13,7 @@ namespace corona92.Models
     public static class CRUD
     {
         public static string connectionString = " Data Source = 43.255.152.25;Database=covid92; Integrated Security = False; User ID = corona92;Password=Faizan1!; Connect Timeout = 15; Encrypt=False;Packet Size = 4096";
+        //public static string connectionString = "Data Source=DESKTOP-LND9IL3;Initial Catalog=covid92;Integrated Security=True";
         public static List<covidCase> getCases()
         {
             SqlConnection con = new SqlConnection(connectionString);
@@ -99,13 +100,16 @@ namespace corona92.Models
             var result = new StringBuilder();
             String line;
             String[] values;
+            SqlTransaction objTrans = null;
+            SqlConnection con = new SqlConnection(connectionString);
             try
             {
                 using (var reader = new StreamReader(file.OpenReadStream()))
                 {
-                    SqlConnection con = new SqlConnection(connectionString);
+                    //con = 
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("Delete From covidCase", con);
+                    objTrans = con.BeginTransaction();
+                    SqlCommand cmd = new SqlCommand("Delete From covidCase", con,objTrans);
                     cmd.ExecuteNonQuery();
                     line = reader.ReadLine();
                     while (reader.Peek() >= 0)
@@ -122,20 +126,27 @@ namespace corona92.Models
                             recovered = int.Parse(values[6].ToString());
                             cmd = new SqlCommand("insert into covidCase values('" + province + "','"
                         + city + "','" + lat.ToString() + "','" + lng.ToString() +
-                        "','" + confirmed.ToString() + "','" + deaths.ToString() + "','" + recovered.ToString() + "')", con);
+                        "','" + confirmed.ToString() + "','" + deaths.ToString() + "','" + recovered.ToString() + "')", con,objTrans);
                             cmd.ExecuteNonQuery();
 
                         // result.AppendLine(reader.ReadLine());
 
                         // cmd = new SqlCommand("UPDATE [dbo].[covidCase] SET [confirmed]  "= Integer., [deaths]  = value2,[recovered] WHERE [province] AND [city] condition; ", con);
                         // cmd.CommandType = System.Data.CommandType.Text;
-
+                        
                     }
+                    objTrans.Commit();
+                    
                 }
             }
             catch (SqlException ex)
             {
+                objTrans.Rollback();
                 Console.WriteLine("SQL Error" + ex.Message.ToString());
+            }
+            finally
+            {
+                con.Close();
             }
             /*
             //  using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"D:\CSVFolder\CSVFile.csv")), true))
