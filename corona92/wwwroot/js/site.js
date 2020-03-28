@@ -221,17 +221,27 @@ function checkJson() {
     cityCount.push(lowCount);
     console.log("button pressed");
     if (deviceType() == "Mobile") {
-        document.getElementById("comingsoon").innerHTML = "Coming soon on Mobile ......";
+        //document.getElementById("comingsoon").innerHTML = "Coming soon on Mobile ......";
         //document.getElementById("myChart").width = "300px";
-        //document.getElementById("myChart").height = "300px";
+        document.getElementById("myChart").height = 450;
         //document.getElementById("myChart2").width = "300px";
-        //document.getElementById("myChart2").height = "300px";
+        document.getElementById("myChart2").height = 600;
+
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        renderProvinceChart(ctx, provinces, provinceCount);
+        //id of div canvas is used to display a chart
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        //Same as above function.
+        //Only receives the province name
+        renderIndividualProvince(ctx2, cities, cityCount, 'Punjab');
 
     }
     else {
         //id of div canvas is used to display a chart
         
-
+        //document.getElementById("myChart").width = "100px";
+        //document.getElementById("myChart").height = "300px";
 
         var ctx = document.getElementById("myChart").getContext('2d');
 
