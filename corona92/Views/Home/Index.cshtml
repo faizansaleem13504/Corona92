@@ -35,6 +35,29 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+        #myInput {
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #008000; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+            .inner-addon {
+      position: relative;
+    }
+
+    /* style glyph */
+    .inner-addon .glyphicon {
+      position: absolute;
+      padding: 10px;
+      pointer-events: none;
+      color:green;
+    }
+
+    /* align glyph */
+    .left-addon .glyphicon  { left:  0px;}
     </style>
 
 </head>
@@ -95,7 +118,14 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table">
+
+                                    <div class="inner-addon left-addon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <input type="text" id="myInput" onkeyup="mySearch()" class="form-control" placeholder="Search" />
+                                    </div>
+
+                                    
+                                    <table class="table" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th class=" text-uppercase small font-weight-bold">City</th>
@@ -110,7 +140,7 @@
                                                 var cityname = "";
                                                 foreach (var cases in Model)
                                                 {
-                                                    if ((@cases.confirmed != 0  || cases.deaths!= 0 || cases.recovered != 0) && cases.longitude != 0)
+                                                    if ((@cases.confirmed != 0 || cases.deaths != 0 || cases.recovered != 0) && cases.longitude != 0)
                                                     {
                                                         cityname = @cases.city;
                                                         if (@cases.longitude == 1)
@@ -132,7 +162,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                                </div>
                             <div class="col-md-4 d-none d-md-block">
 
                                 <h3 class="text-center">Most Popular News</h3>
@@ -257,6 +287,30 @@
             imgText.innerHTML = imgs.alt;
             expandImg.parentElement.style.display = "block";
         }
+
+          function mySearch() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue,td1,txtCal2;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+                // Loop through all table rows, and hide those who don't match the search query
+                 for (i = 0; i < tr.length; i++) {
+                    
+                     td = tr[i].getElementsByTagName("td")[0];
+                     td1 = tr[i].getElementsByTagName("td")[1];
+                         if (td||td1) {
+                             txtValue = td.textContent || td.innerText;
+                             txtValue2 = td1.textContent || td1.innerText;
+                             if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                                 tr[i].style.display = "";
+                             } else {
+                                 tr[i].style.display = "none";
+                             }
+                         }
+                 }
+}
     </script>
     <script src="~/js/makeCharts.js" language="javascript" type="text/javascript"></script>
 </body>
