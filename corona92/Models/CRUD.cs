@@ -21,7 +21,7 @@ namespace corona92.Models
 
             try
             {
-                cmd = new SqlCommand("SELECT * FROM covidCase", con);
+                cmd = new SqlCommand("SELECT * From covidCase", con);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 SqlDataReader rdr = cmd.ExecuteReader();
@@ -89,7 +89,7 @@ namespace corona92.Models
         }
 
 
-       
+
         public static void updateDB(IFormFile file)
         {
             String province, city;
@@ -107,35 +107,35 @@ namespace corona92.Models
                 {
                     //con = 
                     con.Open();
-                    objTrans = con.BeginTransaction();
-                    SqlCommand cmd = new SqlCommand("Delete From covidCase", con,objTrans);
+                    objTrans = con.BeginTransaction(IsolationLevel.Serializable);
+                    SqlCommand cmd = new SqlCommand("Delete From covidCase", con, objTrans);
                     cmd.ExecuteNonQuery();
                     line = reader.ReadLine();
                     while (reader.Peek() >= 0)
                     {
                         line = reader.ReadLine();
                         values = line.Split(',');
-                       
-                            province = values[0].ToString();
-                            city = values[1].ToString();
-                            lat = float.Parse(values[2].ToString());
-                            lng = float.Parse(values[3].ToString());
-                            confirmed = int.Parse(values[4].ToString());
-                            deaths = int.Parse(values[5].ToString());
-                            recovered = int.Parse(values[6].ToString());
-                            cmd = new SqlCommand("insert into covidCase values('" + province + "','"
-                        + city + "','" + lat.ToString() + "','" + lng.ToString() +
-                        "','" + confirmed.ToString() + "','" + deaths.ToString() + "','" + recovered.ToString() + "')", con,objTrans);
-                            cmd.ExecuteNonQuery();
+
+                        province = values[0].ToString();
+                        city = values[1].ToString();
+                        lat = float.Parse(values[2].ToString());
+                        lng = float.Parse(values[3].ToString());
+                        confirmed = int.Parse(values[4].ToString());
+                        deaths = int.Parse(values[5].ToString());
+                        recovered = int.Parse(values[6].ToString());
+                        cmd = new SqlCommand("insert into covidCase values('" + province + "','"
+                    + city + "','" + lat.ToString() + "','" + lng.ToString() +
+                    "','" + confirmed.ToString() + "','" + deaths.ToString() + "','" + recovered.ToString() + "')", con, objTrans);
+                        cmd.ExecuteNonQuery();
 
                         // result.AppendLine(reader.ReadLine());
 
                         // cmd = new SqlCommand("UPDATE [dbo].[covidCase] SET [confirmed]  "= Integer., [deaths]  = value2,[recovered] WHERE [province] AND [city] condition; ", con);
                         // cmd.CommandType = System.Data.CommandType.Text;
-                        
+
                     }
                     objTrans.Commit();
-                    
+
                 }
             }
             catch (SqlException ex)

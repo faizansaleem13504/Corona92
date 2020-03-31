@@ -117,14 +117,11 @@
 
                         <div class="row">
                             <div class="col-md-8 col-sm-12">
+                                <div class="inner-addon left-addon" style="margin-left:10px;margin-right:10px;">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    <input type="text" id="myInput" onkeyup="mySearch()" class="form-control" placeholder="Search by City/Province" />
+                                </div>
                                 <div class="table-responsive">
-
-                                    <div class="inner-addon left-addon">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                        <input type="text" id="myInput" onkeyup="mySearch()" class="form-control" placeholder="Search" />
-                                    </div>
-
-                                    
                                     <table class="table" id="myTable">
                                         <thead>
                                             <tr>
@@ -149,20 +146,20 @@
                                                         }
 
 
-                                                        <tr>
-                                                            <td>@cityname</td>
-                                                            <td>@cases.province</td>
-                                                            <td>@cases.confirmed</td>
-                                                            <td>@cases.deaths</td>
-                                                            <td>@cases.recovered</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td>@cityname</td>
+                                                    <td>@cases.province</td>
+                                                    <td>@cases.confirmed</td>
+                                                    <td>@cases.deaths</td>
+                                                    <td>@cases.recovered</td>
+                                                </tr>
                                                     }
                                                 }
                                             }
                                         </tbody>
                                     </table>
                                 </div>
-                                </div>
+                            </div>
                             <div class="col-md-4 d-none d-md-block">
 
                                 <h3 class="text-center">Most Popular News</h3>

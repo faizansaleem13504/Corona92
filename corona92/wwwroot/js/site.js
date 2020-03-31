@@ -272,6 +272,21 @@ function setVid() {
 
     }
 }
+function my_logo_set() {
+    try {
+        if (deviceType() == "Mobile") {
+            document.getElementById("mymainlogo").width = 85;
+            document.getElementById("mymainlogo").height = 64;
+            document.getElementById("mymaintext").style.fontSize = "20px";
+        }
+        else {
+           
+        }
+    }
+    catch (err) {
+
+    }
+}
 function deviceType() {
     var OSName = "Mobile";
     if (navigator.appVersion.indexOf("Win") != -1 && navigator.appVersion.indexOf("Phone") === -1) OSName = "Windows";
