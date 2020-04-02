@@ -12,7 +12,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-161991133-1');
     </script>
 
@@ -26,6 +25,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <style>
+
 
         body {
             background-color: white;
@@ -55,7 +55,7 @@
     <div class="row">
 
         <!-- Grid column -->
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-12 col-sm-12">
 
 
             <!--   1st GRID PICTURE -->
@@ -68,7 +68,7 @@
                         <div class="modal-body mb-0 p-0">
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.userEngage)"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.sentiments)"
                                         allowfullscreen></iframe>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
             </div>
             <!--LINK TO PICTURE 1st-->
             <a>
-                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.userEngage)" alt="image"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.sentiments)" alt="image"
                      data-toggle="modal" data-target="#modal1">
             </a>
         </div>
@@ -94,7 +94,7 @@
                         <div class="modal-body mb-0 p-0">
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.twitter)"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.movies)"
                                         allowfullscreen></iframe>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
             </div>
             <!--LINK TO PICTURE 2nd-->
             <a>
-                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.twitter)" alt="image"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.movies)" alt="image"
                      data-toggle="modal" data-target="#modal6">
             </a>
         </div>
@@ -120,7 +120,7 @@
                         <div class="modal-body mb-0 p-0">
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.satisfaction)"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.movies2)"
                                         allowfullscreen></iframe>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
             <br /><br />
             <!--LINK TO PICTURE 3rd-->
             <a>
-                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.satisfaction)" alt="video"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.movies2)" alt="video"
                      data-toggle="modal" data-target="#modal4">
             </a>
 
@@ -154,7 +154,7 @@
 
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                 <!-- ADD LINK TO DATA SOURCE HERE-->
-                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.relatives)"
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.cases)"
                                         allowfullscreen></iframe>
                             </div>
 
@@ -170,12 +170,47 @@
             <!--LINK TO PICTURE 4th-->
 
             <a>
-                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.relatives)" alt="video"
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.cases)" alt="video"
                      data-toggle="modal" data-target="#modal2">
             </a>
 
         </div>
         <!-- Grid column -->
+        <div class="col-md-6 col-sm-12">
+
+            <!--Modal: Name-->
+            <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+
+                    <!--Content-->
+                    <div class="modal-content">
+
+                        <!--Body-->
+                        <div class="modal-body mb-0 p-0">
+
+                            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                <!-- ADD LINK TO DATA SOURCE HERE-->
+                                <iframe class="embed-responsive-item" src="@Url.Content((string)ViewBag.prediction)"
+                                        allowfullscreen></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!--/.Content-->
+
+                </div>
+            </div>
+            <br />><br />
+            <!--LINK TO PICTURE 4th-->
+
+            <a>
+                <img class="img-fluid z-depth-1" src="@Url.Content((string)ViewBag.prediction)" alt="video"
+                     data-toggle="modal" data-target="#modal2">
+            </a>
+
+        </div>
         <!-- Grid column -->
         <!-- Grid column -->
         <!-- Grid column -->

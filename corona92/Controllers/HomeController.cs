@@ -42,13 +42,19 @@ namespace corona92.Controllers
         {
             return View();
         }
+        public IActionResult stat()
+        {
+            return View();
+        }
+
         public IActionResult Analysis()
         {
 
-            ViewBag.userEngage = @"~/images/userEngage.jpeg?"+DateTime.Now.ToString("HHmmsskkk");
-            ViewBag.twitter = @"~/images/twitter.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
-            ViewBag.satisfaction = @"~/images/satisfaction.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
-            ViewBag.relatives = @"~/images/relatives.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.sentiments = @"~/images/sentiment.png?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.movies = @"~/images/movie.gif?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.movies2 = @"~/images/movie2.gif?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.cases = @"~/images/cases.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
+            ViewBag.prediction = @"~/images/prediction.jpeg?" + DateTime.Now.ToString("HHmmsskkk");
 
             return View();
         }
@@ -57,5 +63,5 @@ namespace corona92.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-    
+
 }
