@@ -13,6 +13,8 @@ namespace corona92.Models
     public static class CRUD
     {
         public static string connectionString = " Data Source = 43.255.152.25;Database=covid92; Integrated Security = False; User ID = corona92;Password=Faizan1!; Connect Timeout = 15; Encrypt=False;Packet Size = 4096";
+        //public static string connectionString = "Data Source=DESKTOP-LND9IL3;Initial Catalog=covid92;Integrated Security=True";
+
         public static List<covidCase> getCases()
         {
             SqlConnection con = new SqlConnection(connectionString);
@@ -98,6 +100,10 @@ namespace corona92.Models
             var csvTable = new DataTable();
             var result = new StringBuilder();
             String line;
+            String year = "2020";
+            String month = new string(new char[] {file.FileName[13],file.FileName[14] });
+            String day = new string(new char[] { file.FileName[10], file.FileName[11] });
+            String d = year + "-" + month + "-" + day;
             String[] values;
             SqlTransaction objTrans = null;
             SqlConnection con = new SqlConnection(connectionString);
@@ -134,6 +140,12 @@ namespace corona92.Models
                         // cmd.CommandType = System.Data.CommandType.Text;
 
                     }
+                    //update daily cases
+                    Console.WriteLine(d);
+                    cmd = new SqlCommand("updateDailyCases", con, objTrans);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@date", d));
+                    cmd.ExecuteNonQuery();
                     objTrans.Commit();
 
                 }
@@ -272,11 +284,6 @@ namespace corona92.Models
                             if (count == 15)
                                 break;
                         }
-                        // result.AppendLine(reader.ReadLine());
-
-                        // cmd = new SqlCommand("UPDATE [dbo].[covidCase] SET [confirmed]  "= Integer., [deaths]  = value2,[recovered] WHERE [province] AND [city] condition; ", con);
-                        // cmd.CommandType = System.Data.CommandType.Text;
-
                     }
                 }
             }
@@ -286,6 +293,49 @@ namespace corona92.Models
             }
 
         }
+        public static List<DailyCases> getDailyData()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            SqlCommand cmd;
 
+            try
+            {
+                cmd = new SqlCommand("SELECT * From DailyCases order by [date]", con);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                DailyCases today = new DailyCases();
+                //List<DailyCases> yesterdaycases = new List<DailyCases>();
+                //List<DailyCases> todaycases = new List<DailyCases>();
+                List<DailyCases> list = new List<DailyCases>();
+                while (rdr.Read())
+                {
+                    today = new DailyCases();
+                    today.province = rdr["province"].ToString();
+                    today.city = rdr["city"].ToString();
+                    today.latitude = float.Parse(rdr["lat"].ToString());
+                    today.longitude = float.Parse(rdr["lng"].ToString());
+                    today.confirmed = int.Parse(rdr["confirmed"].ToString());
+                    today.active = int.Parse(rdr["active"].ToString());
+                    today.closed = int.Parse(rdr["closed"].ToString());
+                    today.deaths = int.Parse(rdr["deaths"].ToString());
+                    today.recovered = int.Parse(rdr["recovered"].ToString());
+                    today.date = DateTime.Parse(rdr["date"].ToString());
+                    list.Add(today);
+                }
+               
+                rdr.Close();
+                con.Close();
+
+                return list;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error" + ex.Message.ToString());
+                return null;
+
+            }
+        }
     }
 }

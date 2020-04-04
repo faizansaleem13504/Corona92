@@ -1,5 +1,11 @@
-﻿@{
+﻿@using corona92.Models
+@model List<DailyCases>
+@{
     ViewData["Title"] = "stat";
+    List<DailyCases> casesToday = ViewBag.casesToday;
+    List<DailyCases> newCases = ViewBag.newCases;
+    List<DailyCases> dailyCasesList = ViewBag.dailyCasesList;
+
 }
 
 <!DOCTYPE html>
@@ -180,31 +186,31 @@
                     <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin-top:10px;margin-left:10px;margin-bottom:5px;margin-right:10px;">
 
                         <div class="mb-1">Recovered</div>
-                        <div class="h2 font-weight-normal">122<span class="badge badge-success ml-3" style="font-size:small">3 new</span></div>
+                        <div class="h2 font-weight-normal">@casesToday[7].recovered<span class="badge badge-success ml-3" style="font-size:small">@newCases[7].recovered new</span></div>
 
                     </div>
                     <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin-top:2px;margin-left:10px;margin-bottom:10px;margin-right:10px;">
                         <div class="mb-1">Deaths</div>
-                        <div class="h2 font-weight-normal">122<span class="badge badge-success ml-3" style="font-size:small">3 new</span></div>
+                        <div class="h2 font-weight-normal">@casesToday[7].deaths<span class="badge badge-success ml-3" style="font-size:small">@newCases[0].deaths new</span></div>
 
                     </div>
                 </div>
                 <div class="py-5 px-3 text-center font-weight-bold text-success bg-light" style="font-size:large;margin-top:10px;margin-left:10px;margin-bottom:10px;margin-right:-5px;">
 
                     <div class="mb-1">Closed Cases</div>
-                    <div class="h2 font-weight-normal">122<span class="badge badge-success ml-3" style="font-size:small">3 new</span></div>
+                    <div class="h2 font-weight-normal">@casesToday[7].closed<span class="badge badge-success ml-3" style="font-size:small">@newCases[7].closed new</span></div>
 
 
                 </div>
 
                 <div class="pt-5 px-5 text-center font-weight-bold text-danger bg-light" style="font-size:large;margin:10px;">
                     <div class="mb-1">Active Cases</div>
-                    <div class="h2 font-weight-normal">133<span class="badge badge-danger ml-3" style="font-size:small">3 new</span></div>
+                    <div class="h2 font-weight-normal">@casesToday[7].active<span class="badge badge-danger ml-3" style="font-size:small">@newCases[7].active new</span></div>
                 </div>
 
                 <div class="pt-5 px-3 text-center  font-weight-bold  bg-light align-middle" style="margin:10px; font-size:large; text-decoration-color:black;">
                     <div class="mb-1">Confirmed Cases</div>
-                    <div class="h2 font-weight-normal">144<span class="badge badge-dark ml-3" style="font-size:small">3 new</span></div>
+                    <div class="h2 font-weight-normal">@casesToday[7].confirmed<span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span></div>
 
                 </div>
 
@@ -225,54 +231,63 @@
                 </tr>
             </thead>
             <tbody style="font-size:small">
-
-                <tr>
-                    <th scope="row">Punjab</th>
-                    <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-pill badge-success ml-3">no change</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                </tr>
                 <tr>
                     <th scope="row">Sindh</th>
-                    <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">no change</span></td>
+                    <td>@casesToday[0].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[0].confirmed new</span></td>
+                    <td>@casesToday[0].active<span class="badge badge-pill badge-dark ml-3">@newCases[0].active new</span></td>
+                    <td>@casesToday[0].closed<span class="badge badge-pill badge-dark ml-3">@newCases[0].closed new</span></td>
+                    <td>@casesToday[0].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[0].recovered new</span></td>
+                    <td>@casesToday[0].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[0].deaths new</span></td>
                 </tr>
+                <tr>
+                    <th scope="row">Punjab</th>
+                    <td>@casesToday[1].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[1].confirmed new</span></td>
+                    <td>@casesToday[1].active<span class="badge badge-pill badge-dark ml-3">@newCases[1].active new</span></td>
+                    <td>@casesToday[1].closed<span class="badge badge-pill badge-dark ml-3">@newCases[1].closed new</span></td>
+                    <td>@casesToday[1].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[1].recovered new</span></td>
+                    <td>@casesToday[1].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[1].deaths new</span></td>
+                </tr>
+
                 <tr>
                     <th scope="row">KPK</th>
-                    <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
+                    <td>@casesToday[2].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[2].confirmed new</span></td>
+                    <td>@casesToday[2].active<span class="badge badge-pill badge-dark ml-3">@newCases[2].active new</span></td>
+                    <td>@casesToday[2].closed<span class="badge badge-pill badge-dark ml-3">@newCases[2].closed new</span></td>
+                    <td>@casesToday[2].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[2].recovered new</span></td>
+                    <td>@casesToday[2].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[2].deaths new</span></td>
                 </tr>
-                <tr>
-                    <th scope="row">Azad Kashmir</th>
-                    <td>123<span class="badge badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-success ml-3">3 new</span></td>
-                </tr>
+
                 <tr>
                     <th scope="row">Islamabad</th>
-                    <td>123<span class="badge badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-success ml-3">3 new</span></td>
+                    <td>@casesToday[3].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[3].confirmed new</span></td>
+                    <td>@casesToday[3].active<span class="badge badge-pill badge-dark ml-3">@newCases[3].active new</span></td>
+                    <td>@casesToday[3].closed<span class="badge badge-pill badge-dark ml-3">@newCases[3].closed new</span></td>
+                    <td>@casesToday[3].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[3].recovered new</span></td>
+                    <td>@casesToday[3].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[3].deaths new</span></td>
                 </tr>
                 <tr>
                     <th scope="row">Gilgit Baltistan</th>
-                    <td>123<span class="badge badge-dark ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-danger ml-3">3 new</span></td>
-                    <td>123<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-success ml-3">3 new</span></td>
-                    <td>52<span class="badge badge-light ml-3">3 new</span></td>
+                    <td>@casesToday[4].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[4].confirmed new</span></td>
+                    <td>@casesToday[4].active<span class="badge badge-pill badge-dark ml-3">@newCases[4].active new</span></td>
+                    <td>@casesToday[4].closed<span class="badge badge-pill badge-dark ml-3">@newCases[4].closed new</span></td>
+                    <td>@casesToday[4].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[4].recovered new</span></td>
+                    <td>@casesToday[4].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[4].deaths new</span></td>
+                </tr>
+                <tr>
+                    <th scope="row">Balochistan</th>
+                    <td>@casesToday[5].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[5].confirmed new</span></td>
+                    <td>@casesToday[5].active<span class="badge badge-pill badge-dark ml-3">@newCases[5].active new</span></td>
+                    <td>@casesToday[5].closed<span class="badge badge-pill badge-dark ml-3">@newCases[5].closed new</span></td>
+                    <td>@casesToday[5].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[5].recovered new</span></td>
+                    <td>@casesToday[5].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[5].deaths new</span></td>
+                </tr>
+                <tr>
+                    <th scope="row">Azad Kashmir</th>
+                    <td>@casesToday[6].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[6].confirmed new</span></td>
+                    <td>@casesToday[6].active<span class="badge badge-pill badge-dark ml-3">@newCases[6].active new</span></td>
+                    <td>@casesToday[6].closed<span class="badge badge-pill badge-dark ml-3">@newCases[6].closed new</span></td>
+                    <td>@casesToday[6].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[6].recovered new</span></td>
+                    <td>@casesToday[6].deaths<span class="badge badge-pill badge-dark ml-3">@newCases[6].deaths new</span></td>
                 </tr>
             </tbody>
         </table>

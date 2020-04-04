@@ -25,6 +25,10 @@ namespace corona92.Controllers
 
             var ajson = JsonConvert.SerializeObject(CRUD.getHospitalData());
             ViewBag.hospitalData = ajson;
+
+            //CRUD.getDailyData();
+            //return RedirectToAction("Index", "Nimad19990825");
+            //return RedirectToAction("stat","Home");
             return View(CRUD.getCases());
         }
         public IActionResult Response()
@@ -44,6 +48,34 @@ namespace corona92.Controllers
         }
         public IActionResult stat()
         {
+            List<DailyCases> casesToday = null;
+            List<DailyCases> newCases= null;
+            DailyCases today = new DailyCases();
+            List<DailyCases> yesterdaycases = new List<DailyCases>();
+            List<DailyCases> todaycases = new List<DailyCases>();
+            List<DailyCases> dailyCasesList = CRUD.getDailyData();
+            yesterdaycases = dailyCasesList.GetRange(dailyCasesList.Count() - 16, 8);
+            todaycases = dailyCasesList.GetRange(dailyCasesList.Count() - 8, 8);
+            casesToday = todaycases;
+            newCases = new List<DailyCases>();
+            for (int i = 0; i < yesterdaycases.Count; i++)
+            {
+                today = new DailyCases();
+                today.province = yesterdaycases[i].province;
+                today.city = yesterdaycases[i].city;
+                today.latitude = yesterdaycases[i].latitude;
+                today.longitude = yesterdaycases[i].longitude;
+                today.confirmed = todaycases[i].confirmed - yesterdaycases[i].confirmed;
+                today.active = todaycases[i].active - yesterdaycases[i].active;
+                today.closed = todaycases[i].closed - yesterdaycases[i].closed;
+                today.deaths = todaycases[i].deaths - yesterdaycases[i].deaths;
+                today.recovered = todaycases[i].recovered - yesterdaycases[i].recovered;
+                newCases.Add(today);
+            }
+            //todaycases = list.ge
+            ViewBag.newCases = newCases;
+            ViewBag.casesToday = casesToday;
+            ViewBag.dailyCasesList = dailyCasesList;
             return View();
         }
 
