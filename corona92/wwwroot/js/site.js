@@ -203,7 +203,7 @@ function checkJson() {
             else {
                 if (data[d]["city"] === "Others") {
                     otherCount = otherCount + data[d]["confirmed"];
-                } else if (data[d]["confirmed"] < 15) {
+                } else if (data[d]["confirmed"] < 50) {
                     lowCount = lowCount + data[d]["confirmed"];
                 }
                 else {
