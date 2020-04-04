@@ -35,6 +35,13 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+      
+
+    th {
+      position: sticky;
+        top:0px;
+      background: white;
+    }
         #myInput {
       background-position: 10px 12px; /* Position the search icon */
       background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -115,21 +122,21 @@
 
 
 
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-md-8 col-sm-12">
                                 <div class="inner-addon left-addon" style="margin-left:10px;margin-right:10px;">
                                     <i class="glyphicon glyphicon-search"></i>
                                     <input type="text" id="myInput" onkeyup="mySearch()" class="form-control" placeholder="Search by City/Province" />
                                 </div>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="max-height:600px;overflow-y:scroll;">
                                     <table class="table" id="myTable">
-                                        <thead>
+                                        <thead >
                                             <tr>
-                                                <th class=" text-uppercase small font-weight-bold">City</th>
-                                                <th class=" text-uppercase small font-weight-bold">Province</th>
-                                                <th class=" text-uppercase small font-weight-bold">Confirmed Cases</th>
-                                                <th class=" text-uppercase small font-weight-bold">Deaths</th>
-                                                <th class=" text-uppercase small font-weight-bold">Recovered</th>
+                                                <th class=" text-uppercase small font-weight-bold" style="position:sticky;">City</th>
+                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Province</th>
+                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Confirmed Cases</th>
+                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Deaths</th>
+                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Recovered</th>
                                             </tr>
                                         </thead>
                                         <tbody>
