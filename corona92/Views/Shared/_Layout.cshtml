@@ -1,30 +1,50 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161991133-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-161991133-1');
-
-    </script>
-
     <meta charset="utf-8" />
-    <meta name="keywords" content="COVID,coronavirus,pakistan" />
-    <meta name="description" content="COVID-19 is triggering panic across the globe. Get all the latest news and updates from us. Here, you can easily track the number of confirmed coronavirus cases in Pakistan. Our map is an additional feature that can help you identify the infected cities and hospitals nearby." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - corona92</title>
     <link href="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90443139_652020338892649_5884023062860398592_o.png?_nc_cat=110&_nc_sid=730e14&_nc_ohc=f3giBU_aPXgAX_fytrZ&_nc_ht=scontent.flhe5-1.fna&oh=6d352108b1d72ba112f43b53e6464f5c&oe=5E9BE5D8" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
     <style>
+
+        .nav-link:hover {
+            background-color: #006b38ff !important;
+            color: white !important;
+        }
+        /*.a:hover {
+            background-color: #d053f5 !important;
+        }
+        .nav-item:hover {
+            background-color: #d053f5 !important;
+        }
+        .i:hover {
+            background-color: #d053f5 !important;
+        }
+        .fa:hover {
+            background-color: #d053f5 !important;
+        }
+        .li:hover {
+            background-color: #d053f5 !important;
+        }*/
+
 
 
         .header {
             margin-top: 70px;
-            padding: 20px;
+            padding-top: 50px;
             text-align: center;
             background: white;
             color: white;
@@ -32,20 +52,88 @@
 
         .navbar-nav {
             font-family: Calibri;
-            font-weight: 500;
-            font-style: italic;
+            font-weight: 600;
+            font-style: normal;
+            font-size: larger;
         }
 
         .navbar-brand {
             font-weight: bold;
         }
 
+        .navbar .flex-1 {
+            flex: 1;
+            flex-basis: 100%;
+        }
+
+        .fa {
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50%;
+        }
+
+
+
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+            .fa-facebook:hover {
+                color: #006b38ff;
+            }
+
+        .fa-google {
+            background: #dd4b39;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+            .fa-google:hover {
+                color: #006b38ff;
+            }
+
+        .fa-linkedin {
+            background: #0e76a8;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .fa-money {
+            background: #302eff;
+            color: white;
+        }
+
+            .fa-money:hover {
+                background: none;
+                color: white;
+            }
+
+        .fa-linkedin:hover {
+            color: #006b38ff;
+        }
+        /* On screens that are 992px or less, set the background color to blue
+            @@media screen and (max-width: 250px) {
+                .header {
+                                margin-top: 100px;
+                    padding: 20px;
+                    text-align: center;
+                    background:white;
+                    color: white;
+                }
+        }*/
+
 
         .apply {
             font-family: 'Bebas Neue';
-            margin-top: 35px;
+            margin-top: 40px;
             margin-left: 20px;
-            font-size: 4vw;
+            font-size: 50px;
             text-align: center;
             color: black;
         }
@@ -53,42 +141,173 @@
 </head>
 <body>
     <header>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color:#006b38ff">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top main-nav" style="background-color:#006b38ff">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="../../Home/Index">
+
+                <div class="collapse w-100" id="myMenu">
+                    <ul class="nav navbar-nav w-100">
+                            
+                        <li class="nav-item text-center">
+                            <a class="nav-link py-0" href="../../Home/Index"><i class="fa fa-2x fa-home"></i><br>Home</a>
+                        </li>
+                        &nbsp;
+                        &nbsp;
+                        <li class="nav-item text-center">
+                            <a class="nav-link py-0" href="../../Home/Analysis"><i class="fa fa-2x fa-bar-chart"></i><br>Analysis</a>
+                        </li>
+                        @*<li class="nav-item text-center">
+                                <a class="nav-link" href="../../Home/StatsPage">Analysis</a>
+                            </li>*@
+                        &nbsp;
+                        &nbsp;
+                        <li class="nav-item text-center">
+                            <a class="nav-link py-0" href="../../Home/Statistics"><i class="fa fa-2x fa-line-chart"></i><br>Statistics</a>
+                        </li>
+
+                        @*<li class="nav-item text-center">
+                                <a class="nav-link" href="../../Home/stat">Statistics</a>
+                            </li>*@
+                        &nbsp;
+                        &nbsp;
+                        <li class="nav-item text-center ">
+                            <a class="nav-link py-0" href="../../Home/Response"><i class="fa fa-2x fa-pie-chart"></i><br>Response</a>
+                        </li>
+
+                        @*<li class="nav-item text-center">
+                                <a class="nav-link" href="../../Home/StatsPage2">Response</a>
+                            </li>*@
+                        &nbsp;
+                        &nbsp;
+                        <li class="nav-item text-center ">
+                            <a class="nav-link py-0" href="../../Home/Awareness"><i class="fa fa-2x fa-bullhorn"></i><br>Awareness</a>
+                        </li>
+
+                        @*<li class="nav-item text-center">
+                                <a class="nav-link" href="../../Home/mythAndMeasuresPage">Awareness</a>
+                            </li>*@
+
+
+                    </ul>
+                </div>
+
+                <a class="navbar-brand order-first order-md-0 mx-0" href="../../Home/Index">
                     <img src="https://scontent.flhe5-1.fna.fbcdn.net/v/t1.0-9/90182566_652401992187817_2041416033306148864_o.jpg?_nc_cat=102&_nc_sid=730e14&_nc_eui2=AeFKQeoFifgSlR_ValD_-mcuU4SFVU2SKYUaMlHUSjy2luRVNyHAJUe9Xt2N6FXCs0aNC5WyFC-rT_HppPIWzZifGYpq0O1IAUpQ8ldKBU-p3w&_nc_ohc=MZkkpUpGKh0AX-SMPAo&_nc_ht=scontent.flhe5-1.fna&oh=d4c2161abb43190e57427d9d40444a27&oe=5E9C9B7B"
-                         alt="Corona92" style="width:160px; height:40px;">
+                         alt="Corona92" style="width:180px; height:45px;">
                 </a>
-                &nbsp;
-                &nbsp;
-                <div class="collapse navbar-collapse ml-3" id="myMenu">
-                    <ul class="navbar-nav" style="font-size:medium">
-                        <li class="nav-item text-center" style="float:right;">
-                            <a class="nav-link" href="../../Home/Index">Home</a>
-                        </li>
-                        &nbsp;
+
+                <div class="collapse navbar-collapse w-75">
+                    <ul class="nav navbar-nav m-auto">
+
                         <li class="nav-item text-center">
-                            <a class="nav-link" href="../../Home/Analysis">Analysis</a>
+                            <a href="https://www.facebook.com/Corona0092/" class="nav-link py-0 "><i class="fa fa-2x fa-facebook"></i><br>Find Us</a>
+                            @*<a class="nav-link" href="#">Contact</a>*@
                         </li>
-                        &nbsp;
                         <li class="nav-item text-center">
-                            <a class="nav-link" href="../../Home/Response">Response</a>
+                            <a href="https://www.linkedin.com/company/corona92/" class="nav-link py-0 "><i class="fa fa-2x fa-linkedin"></i><br>Reach Us</a>
+                            @*<a class="nav-link" href="#">Contact</a>*@
                         </li>
-                        &nbsp;
                         <li class="nav-item text-center">
-                            <a class="nav-link" href="../../Home/Awareness">Awareness</a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7XNoO7mun8q9nmb_LNj818dE85TYaSO870XB4zj_ZUK_BA/alreadyresponded" class="nav-link py-0 "><i class="fa fa-2x fa-google"></i><br>Respond at</a>
+                            @*<a class="nav-link" href="#">Help</a>*@
                         </li>
-                        &nbsp;
-                        <li class="nav-item text-center">
-                            <a class="nav-link" href="../../Home/stat">Statistics</a>
+
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+
+                        <li class="nav-item text-center" style="  overflow: auto; white-space: nowrap;">
+                            <a class="nav-link py-0" href="https://forms.gle/3DKuZQFH9BBwYtuD7"><i class="fa fa-3x fa-money"></i><br>Donation Registration</a>
                         </li>
                     </ul>
                 </div>
-            </nav>
-        </div>
+
+            </div>
+        </nav>
+
+
+
+
+
+
+
+        @*<div class="container-fluid">
+                        <nav class="navbar navbar-expand navbar-dark fixed-top" style="background-color:#006b38ff">
+
+
+
+                            &nbsp;
+                            &nbsp;
+                            <ul class="navbar-nav">
+                                <li class="nav-item text-center" style="float:right;">
+                                    <a class="nav-link" href="../../Home/Index">Home</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item text-center">
+                                    <a class="nav-link" href="../../Home/StatsPage">Analysis</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item text-center">
+                                    <a class="nav-link" href="../../Home/StatsPage2">Response</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item text-center">
+                                    <a class="nav-link" href="../../Home/mythAndMeasuresPage">Awareness</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item text-center">
+                                    <a class="nav-link" href="../../Home/stat">Statistics</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                /*      MODULE TO INTEGRATE       */
+                    <div class="container-fluid p-4">
+
+                        Your Response :
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7XNoO7mun8q9nmb_LNj818dE85TYaSO870XB4zj_ZUK_BA/alreadyresponded" class="fa fa-google"></a>
+                        &nbsp;
+                        Find Us at :
+                        <a href="https://www.facebook.com/Corona0092/" class="fa fa-facebook"></a>
+                        &nbsp;
+                        See Statistics :
+                        <a href="../../Home/Analysis" class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-stats"></span>
+                        </a>
+                    </div>
+
+
+                // OLDEST =========================================
+            </body>
+            </html>*@
+
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">corona92</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>*@
+
 
         <div class="header">
             <div class="container-fluid">
@@ -103,6 +322,9 @@
                 </div>
             </div>
         </div>
+
+
+
 
     </header>
 

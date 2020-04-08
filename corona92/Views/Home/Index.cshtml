@@ -35,36 +35,40 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
-      
 
-    th {
-      position: sticky;
-        top:0px;
-      background: white;
-    }
+
+        th {
+            position: sticky;
+            top: 0px;
+            background: white;
+        }
+
         #myInput {
-      background-position: 10px 12px; /* Position the search icon */
-      background-repeat: no-repeat; /* Do not repeat the icon image */
-      width: 100%; /* Full-width */
-      font-size: 16px; /* Increase font-size */
-      padding: 12px 20px 12px 40px; /* Add some padding */
-      border: 1px solid #008000; /* Add a grey border */
-      margin-bottom: 12px; /* Add some space below the input */
-    }
-            .inner-addon {
-      position: relative;
-    }
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 100%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 40px; /* Add some padding */
+            border: 1px solid #008000; /* Add a grey border */
+            margin-bottom: 12px; /* Add some space below the input */
+        }
 
-    /* style glyph */
-    .inner-addon .glyphicon {
-      position: absolute;
-      padding: 10px;
-      pointer-events: none;
-      color:green;
-    }
+        .inner-addon {
+            position: relative;
+        }
 
-    /* align glyph */
-    .left-addon .glyphicon  { left:  0px;}
+            /* style glyph */
+            .inner-addon .glyphicon {
+                position: absolute;
+                padding: 10px;
+                pointer-events: none;
+                color: green;
+            }
+
+        /* align glyph */
+        .left-addon .glyphicon {
+            left: 0px;
+        }
     </style>
 
 </head>
@@ -95,7 +99,7 @@
 
                         <div class="container-fluid ">
                             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px; ">
-                                <div class="d-flex flex-row-reverse bg-dark p-2" >
+                                <div class="d-flex flex-row-reverse bg-dark p-2">
 
                                     <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin:10px ;">
                                         <div class="mb-1">Total Recovered</div>
@@ -122,7 +126,7 @@
 
 
 
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <div class="inner-addon left-addon" style="margin-left:10px;margin-right:10px;">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -130,13 +134,13 @@
                                 </div>
                                 <div class="table-responsive" style="max-height:600px;overflow-y:scroll;">
                                     <table class="table" id="myTable">
-                                        <thead >
+                                        <thead>
                                             <tr>
                                                 <th class=" text-uppercase small font-weight-bold" style="position:sticky;">City</th>
-                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Province</th>
-                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Confirmed Cases</th>
-                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Deaths</th>
-                                                <th class=" text-uppercase small font-weight-bold"style="position:sticky">Recovered</th>
+                                                <th class=" text-uppercase small font-weight-bold" style="position:sticky">Province</th>
+                                                <th class=" text-uppercase small font-weight-bold" style="position:sticky">Confirmed Cases</th>
+                                                <th class=" text-uppercase small font-weight-bold" style="position:sticky">Deaths</th>
+                                                <th class=" text-uppercase small font-weight-bold" style="position:sticky">Recovered</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -153,13 +157,13 @@
                                                         }
 
 
-                                                <tr>
-                                                    <td>@cityname</td>
-                                                    <td>@cases.province</td>
-                                                    <td>@cases.confirmed</td>
-                                                    <td>@cases.deaths</td>
-                                                    <td>@cases.recovered</td>
-                                                </tr>
+                                                        <tr>
+                                                            <td>@cityname</td>
+                                                            <td>@cases.province</td>
+                                                            <td>@cases.confirmed</td>
+                                                            <td>@cases.deaths</td>
+                                                            <td>@cases.recovered</td>
+                                                        </tr>
                                                     }
                                                 }
                                             }
@@ -192,18 +196,6 @@
                         </div>
 
 
-                        <div class="container-fluid p-4">
-                            <a href="../../Home/Analysis">-> See Response Statistics Here</a>
-                            &nbsp;
-                            &nbsp;
-                            <a href="https://www.facebook.com/Corona0092/">  -> Facebook </a>
-                            &nbsp;
-                            &nbsp;
-                            <a href="https://forms.gle/kqpB9g71Wj5yjJGk7">  -> Google Forms</a>
-
-                        </div>
-
-
                     </div>
                 </div>
             </div>
@@ -217,30 +209,30 @@
     </div>
     <br /><br />
     <!--MAPS -->
-          <div id="mapid" style="width: 600px; height: 500px;margin:auto">
-              <div id="mapbuttondiv" class="leaflet-top leaflet-right" style="margin:10px; pointer-events:auto;display:none">
-                  <div class="btn-group">
-                      <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default " onclick="showInfectedLayerWrapper()">Infections</button>
-                      <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default" onclick="showHospitalLayerWrapper()">Hospitals</button>
-                  </div>
-              </div>
-              <div id="locationicondiv" class="leaflet-bottom leaflet-left" style="margin:10px; pointer-events:auto;display:none">
-                  <input type="image" src="~/images/pin.png" onclick="getLocationLeaflet()" width="48" height="48">
-              </div>
-          </div>
+    <div id="mapid" style="width: 600px; height: 500px;margin:auto">
+        <div id="mapbuttondiv" class="leaflet-top leaflet-right" style="margin:10px; pointer-events:auto;display:none">
+            <div class="btn-group">
+                <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default " onclick="showInfectedLayerWrapper()">Infections</button>
+                <button type="button" style="background-color:white; margin: 2px;font-size: small;border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" class="btn btn-default" onclick="showHospitalLayerWrapper()">Hospitals</button>
+            </div>
+        </div>
+        <div id="locationicondiv" class="leaflet-bottom leaflet-left" style="margin:10px; pointer-events:auto;display:none">
+            <input type="image" src="~/images/pin.png" onclick="getLocationLeaflet()" width="48" height="48">
+        </div>
+    </div>
     <!-- MAP END -->
     <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center; margin-bottom:30px;">
-            <span style="font-size: 25px; font-family:Calibri; font-weight:700;font-style:italic; background-color: white; padding: 0 10px;">
-                Corona Growth
-            </span>
-        </div>
-        <!-- PIE CHARTS STARTS HERE -->
-        <div class="container-fluid">
-            <p id="comingsoon"></p>
-            <!-- Canvas element will display the chart -->
-            <canvas id="myChart"></canvas>
-            <canvas id="myChart2"></canvas>
-        </div>
+        <span style="font-size: 25px; font-family:Calibri; font-weight:700;font-style:italic; background-color: white; padding: 0 10px;">
+            Corona Growth
+        </span>
+    </div>
+    <!-- PIE CHARTS STARTS HERE -->
+    <div class="container-fluid">
+        <p id="comingsoon"></p>
+        <!-- Canvas element will display the chart -->
+        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -292,29 +284,29 @@
             expandImg.parentElement.style.display = "block";
         }
 
-          function mySearch() {
-          // Declare variables
-          var input, filter, table, tr, td, i, txtValue,td1,txtCal2;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("myTable");
-          tr = table.getElementsByTagName("tr");
-                // Loop through all table rows, and hide those who don't match the search query
-                 for (i = 0; i < tr.length; i++) {
-                    
-                     td = tr[i].getElementsByTagName("td")[0];
-                     td1 = tr[i].getElementsByTagName("td")[1];
-                         if (td||td1) {
-                             txtValue = td.textContent || td.innerText;
-                             txtValue2 = td1.textContent || td1.innerText;
-                             if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
-                                 tr[i].style.display = "";
-                             } else {
-                                 tr[i].style.display = "none";
-                             }
-                         }
-                 }
-}
+        function mySearch() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue, td1, txtCal2;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+
+                td = tr[i].getElementsByTagName("td")[0];
+                td1 = tr[i].getElementsByTagName("td")[1];
+                if (td || td1) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue2 = td1.textContent || td1.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
     <script src="~/js/makeCharts.js" language="javascript" type="text/javascript"></script>
 </body>

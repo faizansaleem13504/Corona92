@@ -46,14 +46,17 @@ namespace corona92.Controllers
         {
             return View();
         }
-        public IActionResult stat()
+        public IActionResult Statistics()
         {
             List<DailyCases> casesToday = null;
             List<DailyCases> newCases= null;
             DailyCases today = new DailyCases();
+            DailyCases newYesterday = new DailyCases();
             List<DailyCases> yesterdaycases = new List<DailyCases>();
             List<DailyCases> todaycases = new List<DailyCases>();
+            List<DailyCases> twoDaysBefore = new List<DailyCases>();
             List<DailyCases> dailyCasesList = CRUD.getDailyData();
+            twoDaysBefore = dailyCasesList.GetRange(dailyCasesList.Count() - 24, 8);
             yesterdaycases = dailyCasesList.GetRange(dailyCasesList.Count() - 16, 8);
             todaycases = dailyCasesList.GetRange(dailyCasesList.Count() - 8, 8);
             casesToday = todaycases;
@@ -72,7 +75,45 @@ namespace corona92.Controllers
                 today.recovered = todaycases[i].recovered - yesterdaycases[i].recovered;
                 newCases.Add(today);
             }
+            
+                newYesterday = new DailyCases();
+                newYesterday.province = yesterdaycases[7].province;
+                newYesterday.city = yesterdaycases[7].city;
+                newYesterday.latitude = yesterdaycases[7].latitude;
+                newYesterday.longitude = yesterdaycases[7].longitude;
+                newYesterday.confirmed = yesterdaycases[7].confirmed - twoDaysBefore[7].confirmed;
+                newYesterday.active = yesterdaycases[7].active - twoDaysBefore[7].active;
+                newYesterday.closed = yesterdaycases[7].closed - twoDaysBefore[7].closed;
+                newYesterday.deaths = yesterdaycases[7].deaths - twoDaysBefore[7].deaths;
+                newYesterday.recovered = yesterdaycases[7].recovered - twoDaysBefore[7].recovered;                
+            
+            DailyCases percentage = new DailyCases();
+            double confirmedCasesPercentage = (((double)today.confirmed / (double)newYesterday.confirmed)  )*100;
+            double activeCasesPercentage = (((double)(today.active/ (double)newYesterday.active) ))*100;
+            double closedCasesPercentage = ((double)today.closed / (double)newYesterday.closed )*100;
+            double deathsCasesPercentage = ((double)today.deaths / (double)newYesterday.deaths ) * 100;
+            double recoveredCasesPercentage = ((double)today.recovered / (double)newYesterday.recovered  ) * 100;
+            percentage.confirmed = (int)confirmedCasesPercentage;
+            percentage.closed = (int)closedCasesPercentage;
+            percentage.active = (int)activeCasesPercentage;
+            percentage.deaths = (int)deathsCasesPercentage;
+            percentage.recovered = (int)recoveredCasesPercentage;
+            //set falg to show increase or decrese
+            DailyCases increase = new DailyCases(); increase.confirmed = 0;increase.active = 0;increase.closed = 0;
+            increase.deaths = 0; increase.recovered = 0;
+            if (today.confirmed > newYesterday.confirmed)
+                increase.confirmed = 1;
+            if (today.active > newYesterday.active)
+                increase.active = 1;
+            if (today.closed > newYesterday.closed)
+                increase.closed = 1;
+            if (today.deaths > newYesterday.deaths)
+                increase.deaths = 1;
+            if (today.recovered > newYesterday.recovered)
+                increase.recovered = 1;
             //todaycases = list.ge
+            ViewBag.increase = increase;
+            ViewBag.percent = percentage;
             ViewBag.newCases = newCases;
             ViewBag.casesToday = casesToday;
             ViewBag.dailyCasesList = dailyCasesList;
