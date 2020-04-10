@@ -1,5 +1,6 @@
 ﻿@using corona92.Models
 @model List<DailyCases>
+
 @{
     ViewData["Title"] = "stat";
     List<DailyCases> casesToday = ViewBag.casesToday;
@@ -25,224 +26,226 @@
     <style>
 
 
-             div.a {
-                 font-size: 20px;
-                 font-weight: 400;
-             }
+        div.a {
+            font-size: 20px;
+            font-weight: 400;
+        }
 
-             .btn-app {
-                 position: relative;
-                 margin: 0 0 10px 10px;
-                 min-width: 80px;
-                 height: 1px;
-                 text-align: center;
-                 color: #e62020;
-                 border: 0;
-                 font-weight: bold;
-             }
+        .btn-app {
+            position: relative;
+            margin: 0 0 10px 10px;
+            min-width: 80px;
+            height: 1px;
+            text-align: center;
+            color: #e62020;
+            border: 0;
+            font-weight: bold;
+        }
 
-             .p-2 {
-                 padding: 0.6rem !important;
-                 font-size: 15px;
-             }
+        .p-2 {
+            padding: 0.6rem !important;
+            font-size: 15px;
+        }
 
-             .p-3 {
-                 padding: 0.6rem !important;
-                 font-size: 25px;
-             }
+        .p-3 {
+            padding: 0.6rem !important;
+            font-size: 25px;
+        }
 
-             .center {
-                 margin: auto;
-                 width: 60%;
-                 border: 20px solid #73AD21;
-                 padding: 10px;
-             }
+        .center {
+            margin: auto;
+            width: 60%;
+            border: 20px solid #73AD21;
+            padding: 10px;
+        }
 
-             .badge1 {
-                 position: absolute;
-                 top: -3px;
-                 right: -10px;
-                 font-size: 12px;
-                 font-weight: 400
-             }
+        .badge1 {
+            position: absolute;
+            top: -3px;
+            right: -10px;
+            font-size: 12px;
+            font-weight: 400
+        }
 
-             .btn-app > .badge {
-                 position: absolute;
-                 top: -3px;
-                 right: -10px;
-                 font-size: 9px;
-                 font-weight: 400
-             }
+        .btn-app > .badge {
+            position: absolute;
+            top: -3px;
+            right: -10px;
+            font-size: 9px;
+            font-weight: 400
+        }
 
-             .btn-app > .maincasesbadge {
-                 position: absolute;
-                 top: 10px;
-                 right: -15px;
-                 font-size: 10px;
-                 font-weight: 400
-             }
+        .btn-app > .maincasesbadge {
+            position: absolute;
+            top: 10px;
+            right: -15px;
+            font-size: 10px;
+            font-weight: 400
+        }
 
-             /* INNER PAGES COUNTERS */
-             #maincounter-wrap {
-                 margin: auto;
-                 text-align: center;
-                 padding-top: 20px
-             }
+        /* INNER PAGES COUNTERS */
+        #maincounter-wrap {
+            margin: auto;
+            text-align: center;
+            padding-top: 20px
+        }
 
-                 #maincounter-wrap h1 {
-                     font-family: 'Roboto Condensed', sans-serif;
-                     font-weight: 300;
-                     font-size: 40px;
-                     color: #555;
-                     margin: 0;
-                 }
+            #maincounter-wrap h1 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-weight: 300;
+                font-size: 40px;
+                color: #555;
+                margin: 0;
+            }
 
-             .maincounter-number {
-                 font-weight: 400;
-                 color: #696969;
-                 font-size: 80px;
-             }
+        .maincounter-number {
+            font-weight: 400;
+            color: #696969;
+            font-size: 80px;
+        }
 
-             .maincounter-number-gdp {
-                 font-weight: 700;
-                 color: #696969;
-                 font-size: 60px;
-             }
+        .maincounter-number-gdp {
+            font-weight: 700;
+            color: #696969;
+            font-size: 60px;
+        }
 
-             #viewall {
-                 font-size: 16px;
-                 color: #C0C0C0;
-                 padding-bottom: 30px;
-                 text-align: center;
-             }
+        #viewall {
+            font-size: 16px;
+            color: #C0C0C0;
+            padding-bottom: 30px;
+            text-align: center;
+        }
 
-                 #viewall a:link {
-                     color: #C0C0C0;
-                     text-decoration: none;
-                 }
+            #viewall a:link {
+                color: #C0C0C0;
+                text-decoration: none;
+            }
 
-                 #viewall a:visited {
-                     color: #C0C0C0;
-                     text-decoration: none;
-                 }
+            #viewall a:visited {
+                color: #C0C0C0;
+                text-decoration: none;
+            }
 
-                 #viewall a:hover {
-                     color: #333333;
-                     text-decoration: none;
-                 }
+            #viewall a:hover {
+                color: #333333;
+                text-decoration: none;
+            }
 
-             .GFG1 {
-                 grid-area: heading;
-                 background-color: grey
-             }
+        .GFG1 {
+            grid-area: heading;
+            background-color: grey
+        }
 
-             .GFG2 {
-                 grid-area: margin;
-             }
+        .GFG2 {
+            grid-area: margin;
+        }
 
-             .GFG3 {
-                 grid-area: sec;
-             }
+        .GFG3 {
+            grid-area: sec;
+        }
 
-             .GFG5 {
-                 grid-area: sec1;
-             }
+        .GFG5 {
+            grid-area: sec1;
+        }
 
-             .GFG4 {
-                 grid-area: info;
-             }
+        .GFG4 {
+            grid-area: info;
+        }
 
-             .main {
-                 display: grid;
-                 grid-gap: 10px;
-                 background-color: green;
-                 padding: 10px;
-                 margin: auto;
-                 grid-template-areas: 'margin sec sec1 heading heading heading ' 'margin sec sec1 info info info';
-             }
+        .main {
+            display: grid;
+            grid-gap: 10px;
+            background-color: green;
+            padding: 10px;
+            margin: auto;
+            grid-template-areas: 'margin sec sec1 heading heading heading ' 'margin sec sec1 info info info';
+        }
 
-             .GFG {
-                 background-color: white;
-                 text-align: center;
-                 padding: 5px;
-                 font-size: 20px;
-                 font-weight: 300;
-             }
+        .GFG {
+            background-color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 20px;
+            font-weight: 300;
+        }
 
-             body {
-                 background-color: white;
-                 margin-top: 10px;
-                 margin-bottom: 10px;
-             }
+        body {
+            background-color: white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
 
-             .clickable {
-                 cursor: pointer;
-             }
+        .clickable {
+            cursor: pointer;
+        }
 
-             .panel-heading div {
-                 margin-top: -18px;
-                 font-size: 15px;
-             }
+        .panel-heading div {
+            margin-top: -18px;
+            font-size: 15px;
+        }
 
-                 .panel-heading div span {
-                     margin-left: 5px;
-                 }
+            .panel-heading div span {
+                margin-left: 5px;
+            }
 
-             .panel-body {
-                 display: none;
-             }
+        .panel-body {
+            display: none;
+        }
 
-             .table-responsive-stack tr {
-                 display: -webkit-box;
-                 display: -ms-flexbox;
-                 display: flex;
-                 -webkit-box-orient: horizontal;
-                 -webkit-box-direction: normal;
-                 -ms-flex-direction: row;
-                 flex-direction: row;
-             }
+        .table-responsive-stack tr {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
 
 
-             .table-responsive-stack td,
-             .table-responsive-stack th {
-                 display: block;
-                 /*
+        .table-responsive-stack td,
+        .table-responsive-stack th {
+            display: block;
+            /*
         flex-grow | flex-shrink | flex-basis   */
-                 -ms-flex: 1 1 auto;
-                 flex: 1 1 auto;
-             }
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+        }
 
-             .table-responsive-stack .table-responsive-stack-thead {
-                 font-weight: bold;
-             }
+        .table-responsive-stack .table-responsive-stack-thead {
+            font-weight: bold;
+        }
 
-             @@media screen and (max-width: 768px) {
-                 .table-responsive-stack tr {
-                     -webkit-box-orient: vertical;
-                     -webkit-box-direction: normal;
-                     -ms-flex-direction: column;
-                     flex-direction: column;
-                     border-bottom: 3px solid #ccc;
-                     display: block;
-                 }
-                 /*  IE9 FIX   */
-                 .table-responsive-stack td {
-                     float: left\9;
-                     width: 100%;
-                 }
-             }
+        @@media screen and (max-width: 768px) {
+            .table-responsive-stack tr {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                border-bottom: 3px solid #ccc;
+                display: block;
+            }
+            /*  IE9 FIX   */
+            .table-responsive-stack td {
+                float: left\9;
+                width: 100%;
+            }
+        }
 
-             .position {
-                 background-color: red;
-                 vertical-align: middle;
-                 display: table-cell;
-                 text-align: center;
-             }
+        .position {
+            background-color: red;
+            vertical-align: middle;
+            display: table-cell;
+            text-align: center;
+        }
     </style>
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="~/js/statistics.js" type="text/javascript"></script>
+
     @*<script>
                 $(document).ready(function() {
 
@@ -313,7 +316,7 @@
 
 </head>
 
-<body>
+<body onload="statistics_onload_function()">
     <div class="container-fluid ">
         <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px; ">
             <div class="d-flex flex-row-reverse bg-dark p-2">
@@ -849,133 +852,31 @@
             </tbody>
         </table>
     </div>
+    <div class="container">
+        <!-- Canvas element will display the chart -->
+        <canvas id="StackedBarPlot"></canvas>
+    </div>
+    <div class="container">
+        <!-- Canvas element will display the chart -->
+        <canvas id="CoronaRatePlotProvinces"></canvas>
+    </div>
+    <script>
+        function statistics_onload_function() {
+            
+            var param3 = @Html.Raw(ViewBag.casesToday1) ;
 
 
+            showStackedBarPlot(param3);
+            var param4 = @Html.Raw(ViewBag.dailyCasesList1) ;
+            showCoronaRatePlotProvinces(param4);
+
+
+
+        }
+    </script>
 
 </body>
+
 </html>
 
-@*
 
-    <body>
-        <div class="container-fluid ">
-            <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px; ">
-                <div class="d-flex flex-row-reverse bg-dark p-2">
-
-
-                    <div class="flex-column-reverse">
-                        <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin-top:10px;margin-left:10px;margin-bottom:5px;margin-right:10px;">
-
-                            <div class="mb-1">Recovered</div>
-                            <div class="h2 font-weight-normal">@casesToday[7].recovered<span class="badge badge-success ml-3" style="font-size:small">@newCases[7].recovered new</span></div>
-
-                        </div>
-                        <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin-top:2px;margin-left:10px;margin-bottom:10px;margin-right:10px;">
-                            <div class="mb-1">Deaths</div>
-                            <div class="h2 font-weight-normal">@casesToday[7].deaths<span class="badge badge-success ml-3" style="font-size:small">@newCases[0].deaths new</span></div>
-
-                        </div>
-                    </div>
-                    <div class="py-5 px-3 text-center font-weight-bold text-success bg-light" style="font-size:large;margin-top:10px;margin-left:10px;margin-bottom:10px;margin-right:-5px;">
-
-                        <div class="mb-1">Closed Cases</div>
-                        <div class="h2 font-weight-normal">@casesToday[7].closed<span class="badge badge-success ml-3" style="font-size:small">@newCases[7].closed new</span></div>
-
-
-                    </div>
-
-                    <div class="pt-5 px-5 text-center font-weight-bold text-danger bg-light" style="font-size:large;margin:10px;">
-                        <div class="mb-1">Active Cases</div>
-                        <div class="h2 font-weight-normal">@casesToday[7].active<span class="badge badge-danger ml-3" style="font-size:small">@newCases[7].active new</span></div>
-                    </div>
-
-                    <div class="pt-5 px-3 text-center  font-weight-bold  bg-light align-middle" style="margin:10px; font-size:large; text-decoration-color:black;">
-                        <div class="mb-1">Confirmed Cases</div>
-                        <div class="h2 font-weight-normal">@casesToday[7].confirmed<span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span></div>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered text-center" id="myTable" style="font-family:">
-                <thead style="font-size:small;font-weight:300">
-                    <tr>
-                        <th class=" text-uppercase small font-weight-bold">Province</th>
-                        <th class=" text-uppercase small font-weight-bold">Total</th>
-                        <th class=" text-uppercase small font-weight-bold">Active</th>
-                        <th class=" text-uppercase small font-weight-bold">Closed</th>
-                        <th class=" text-uppercase small font-weight-bold">Recovered</th>
-                        <th class=" text-uppercase small font-weight-bold">Deaths</th>
-                    </tr>
-                </thead>
-                <tbody style="font-size:small">
-                    <tr>
-                        <th scope="row">Sindh</th>
-                        <td>@casesToday[0].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[0].confirmed new</span></td>
-                        <td>@casesToday[0].active<span class="badge badge-pill badge-dark ml-3">@newCases[0].active new</span></td>
-                        <td>@casesToday[0].closed<span class="badge badge-pill badge-dark ml-3">@newCases[0].closed new</span></td>
-                        <td>@casesToday[0].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[0].recovered new</span></td>
-                        <td>@casesToday[0].deaths<span class="badge badge-pill badge-success ml-3">@newCases[0].deaths new</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Punjab</th>
-                        <td>@casesToday[1].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[1].confirmed new</span></td>
-                        <td>@casesToday[1].active<span class="badge badge-pill badge-dark ml-3">@newCases[1].active new</span></td>
-                        <td>@casesToday[1].closed<span class="badge badge-pill badge-dark ml-3">@newCases[1].closed new</span></td>
-                        <td>@casesToday[1].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[1].recovered new</span></td>
-                        <td>@casesToday[1].deaths<span class="badge badge-pill badge-success ml-3">@newCases[1].deaths new</span></td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">KPK</th>
-                        <td>@casesToday[2].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[2].confirmed new</span></td>
-                        <td>@casesToday[2].active<span class="badge badge-pill badge-dark ml-3">@newCases[2].active new</span></td>
-                        <td>@casesToday[2].closed<span class="badge badge-pill badge-dark ml-3">@newCases[2].closed new</span></td>
-                        <td>@casesToday[2].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[2].recovered new</span></td>
-                        <td>@casesToday[2].deaths<span class="badge badge-pill badge-success ml-3">@newCases[2].deaths new</span></td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Islamabad</th>
-                        <td>@casesToday[3].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[3].confirmed new</span></td>
-                        <td>@casesToday[3].active<span class="badge badge-pill badge-dark ml-3">@newCases[3].active new</span></td>
-                        <td>@casesToday[3].closed<span class="badge badge-pill badge-dark ml-3">@newCases[3].closed new</span></td>
-                        <td>@casesToday[3].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[3].recovered new</span></td>
-                        <td>@casesToday[3].deaths<span class="badge badge-pill badge-success ml-3">@newCases[3].deaths new</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Gilgit Baltistan</th>
-                        <td>@casesToday[4].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[4].confirmed new</span></td>
-                        <td>@casesToday[4].active<span class="badge badge-pill badge-dark ml-3">@newCases[4].active new</span></td>
-                        <td>@casesToday[4].closed<span class="badge badge-pill badge-dark ml-3">@newCases[4].closed new</span></td>
-                        <td>@casesToday[4].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[4].recovered new</span></td>
-                        <td>@casesToday[4].deaths<span class="badge badge-pill badge-success ml-3">@newCases[4].deaths new</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Balochistan</th>
-                        <td>@casesToday[5].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[5].confirmed new</span></td>
-                        <td>@casesToday[5].active<span class="badge badge-pill badge-dark ml-3">@newCases[5].active new</span></td>
-                        <td>@casesToday[5].closed<span class="badge badge-pill badge-dark ml-3">@newCases[5].closed new</span></td>
-                        <td>@casesToday[5].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[5].recovered new</span></td>
-                        <td>@casesToday[5].deaths<span class="badge badge-pill badge-success ml-3">@newCases[5].deaths new</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Azad Kashmir</th>
-                        <td>@casesToday[6].confirmed<span class="badge badge-pill badge-dark ml-3">@newCases[6].confirmed new</span></td>
-                        <td>@casesToday[6].active<span class="badge badge-pill badge-dark ml-3">@newCases[6].active new</span></td>
-                        <td>@casesToday[6].closed<span class="badge badge-pill badge-dark ml-3">@newCases[6].closed new</span></td>
-                        <td>@casesToday[6].recovered<span class="badge badge-pill badge-dark ml-3">@newCases[6].recovered new</span></td>
-                        <td>@casesToday[6].deaths<span class="badge badge-pill badge-success ml-3">@newCases[6].deaths new</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-
-    </body>
-    </html>
-*@

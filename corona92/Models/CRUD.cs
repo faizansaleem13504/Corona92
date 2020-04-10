@@ -321,7 +321,7 @@ namespace corona92.Models
                     today.closed = int.Parse(rdr["closed"].ToString());
                     today.deaths = int.Parse(rdr["deaths"].ToString());
                     today.recovered = int.Parse(rdr["recovered"].ToString());
-                    today.date = DateTime.Parse(rdr["date"].ToString());
+                    today.date = (DateTime.Parse(rdr["date"].ToString())).ToString("dd/MM/yyyy");
                     list.Add(today);
                 }
                

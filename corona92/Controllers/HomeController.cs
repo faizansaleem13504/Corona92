@@ -28,7 +28,7 @@ namespace corona92.Controllers
 
             //CRUD.getDailyData();
             //return RedirectToAction("Index", "Nimad19990825");
-            //return RedirectToAction("stat","Home");
+            //return RedirectToAction("Statistics", "Home");
             return View(CRUD.getCases());
         }
         public IActionResult Response()
@@ -116,7 +116,9 @@ namespace corona92.Controllers
             ViewBag.percent = percentage;
             ViewBag.newCases = newCases;
             ViewBag.casesToday = casesToday;
+            ViewBag.casesToday1 = JsonConvert.SerializeObject(casesToday);
             ViewBag.dailyCasesList = dailyCasesList;
+            ViewBag.dailyCasesList1 = JsonConvert.SerializeObject(dailyCasesList);
             return View();
         }
 

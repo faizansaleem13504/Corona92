@@ -16,6 +16,6 @@ namespace corona92.Models
         public int closed;
         public int deaths;
         public int recovered;
-        public DateTime date;
+        public String date;
     }
 }
