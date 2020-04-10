@@ -13,9 +13,9 @@
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Punjab', 'Sindh', 'Khyber Pakhtunkhwa', 'Balochistan', 'AJK', 'Gilgit Baltistan', 'Islamabad'],
+            labels: ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'AJK', 'GB', 'Islamabad'],
             datasets: [{
-                label: "Total",
+                label: "Active",
                 type: "bar",
                 stack: "Base",
                 backgroundColor: "#FA9F42",
@@ -37,16 +37,15 @@
         options: {
             title: {
                 display: true,
-                text: 'Corona Total-Recovery-Death Analysis (Province wise)',
+                text: 'Corona Active-Recovery-Death Analysis (Province wise)',
                 fontSize: 30,
             },
+            responsive: true,
             scales: {
                 xAxes: [{
                     stacked: true,
                     ticks: {
                         beginAtZero: true,
-                        maxRotation: 0,
-                        minRotation: 0
                     },
                 }],
                 yAxes: [{
@@ -274,7 +273,7 @@ function showStackedBarPlot(data) {
     //punjab, sindh, kpk, balochisatan, ajk, gb, islamabad
     //actual,
     //sindh = 0, punjab = 1, KPK = 2, ISL = 3, GB = 4, Balochistan = 5, AJK = 6, Pakistan = 7
-    var cases1 = [data[1]["confirmed"], data[0]["confirmed"], data[2]["confirmed"], data[5]["confirmed"], data[6]["confirmed"], data[4]["confirmed"], data[3]["confirmed"]];
+    var cases1 = [data[1]["active"], data[0]["active"], data[2]["active"], data[5]["active"], data[6]["active"], data[4]["active"], data[3]["active"]];
     var recovered1 = [data[1]["recovered"], data[0]["recovered"], data[2]["recovered"], data[5]["recovered"], data[6]["recovered"], data[4]["recovered"], data[3]["recovered"]];
     var deaths1 = [data[1]["deaths"], data[0]["deaths"], data[2]["deaths"], data[5]["deaths"], data[6]["deaths"], data[4]["deaths"], data[3]["deaths"]];
 
