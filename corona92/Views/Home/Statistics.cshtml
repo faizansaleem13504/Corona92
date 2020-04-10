@@ -1,6 +1,5 @@
 ﻿@using corona92.Models
 @model List<DailyCases>
-
 @{
     ViewData["Title"] = "stat";
     List<DailyCases> casesToday = ViewBag.casesToday;
@@ -185,6 +184,7 @@
             font-size: 15px;
         }
 
+
             .panel-heading div span {
                 margin-left: 5px;
             }
@@ -239,6 +239,11 @@
             display: table-cell;
             text-align: center;
         }
+
+        @@media screen and (max-width: 250px) {
+            .mobileScr {
+            }
+        }
     </style>
 
     <!-- Font Awesome JS -->
@@ -246,237 +251,166 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="~/js/statistics.js" type="text/javascript"></script>
 
-    @*<script>
-                $(document).ready(function() {
-
-
-           // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
-           $('.table-responsive-stack').find("th").each(function (i) {
-
-              $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">'+ $(this).text() + ':</span> ');
-              $('.table-responsive-stack-thead').hide();
-           });
-
-
-
-
-
-        $( '.table-responsive-stack' ).each(function() {
-          var thCount = $(this).find("th").length;
-           var rowGrow = 100 / thCount + '%';
-           //console.log(rowGrow);
-           $(this).find("th, td").css('flex-basis', rowGrow);
-        });
-
-
-
-
-        function flexTable(){
-           if ($(window).width() < 768) {
-
-           $(".table-responsive-stack").each(function (i) {
-              $(this).find(".table-responsive-stack-thead").show();
-              $(this).find('thead').hide();
-           });
-
-
-           // window is less than 768px
-           } else {
-
-
-           $(".table-responsive-stack").each(function (i) {
-              $(this).find(".table-responsive-stack-thead").hide();
-              $(this).find('thead').show();
-           });
-
-
-
-           }
-        // flextable
-        }
-
-        flexTable();
-
-        window.onresize = function(event) {
-            flexTable();
-        };
-
-
-
-
-
-
-        // document ready
-        });
-
-
-
-            </script>
-    *@
-
 </head>
 
 <body onload="statistics_onload_function()">
-    <div class="container-fluid ">
-        <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px; ">
-            <div class="d-flex flex-row-reverse bg-dark p-2">
 
+    <div class="row justify-content-center bg-dark mx-5 " style="margin-bottom:20px; margin-top:20px; ">
 
-                <div class="flex-column-reverse">
-                    <div class="py-1 px-3 text-center font-weight-bold text-success bg-light" style="margin-top:10px;margin-left:10px;margin-bottom:5px;margin-right:10px;">
+        <div class="col-md-3 col-6">
+            <div class="py-5  my-4  px-5 text-center  font-weight-bold  bg-light align-middle " style="font-size:large; text-decoration-color:black;">
+                <div class="mb-1">Confirmed Cases</div>
+                <div class="h2 font-weight-normal">
+                    @casesToday[7].confirmed
+                    @if (newCases[7].confirmed > 0)
+                    {
 
-                        <div class="mb-1">Recovered</div>
-                        <div class="h2 font-weight-normal">
-                            @casesToday[7].recovered
-
-                            @if (newCases[7].recovered > 0)
-                            {
-                                if (increase.recovered == 1)
-                                {
-                                    <div class="flex-column-reverse" style="display:inline-flex;">
-                                        <span class="badge badge-success ml-3" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
-                                        <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkslateblue"><i class="fa fa-arrow-up"></i> @precentage.recovered%</div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="flex-column-reverse" style="display:inline-flex;">
-                                        <span class="badge badge-success ml-3" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
-                                        <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkred"><i class="fa fa-arrow-down"></i> @precentage.recovered%</div>
-                                    </div>
-                                }
-
-                            }
-
-                        </div>
-
-                    </div>
-                    <div class="py-1 px-3 text-center font-weight-bold text-danger bg-light" style="margin-top:2px;margin-left:10px;margin-bottom:10px;margin-right:10px;">
-                        <div class="mb-1">Deaths</div>
-                        <div class="h2 font-weight-normal">
-                            @casesToday[7].deaths
-
-                            @if (newCases[7].deaths > 0)
-                            {
-
-                                if (increase.deaths == 1)
-                                {
-                                    <div class="flex-column-reverse" style="display:inline-flex;">
-                                        <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
-                                        <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.deaths%</div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="flex-column-reverse" style="display:inline-flex;">
-                                        <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
-                                        <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.deaths%</div>
-                                    </div>
-                                }
-
-
-
-                            }
-
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="py-5 px-3 text-center font-weight-bold text-secondary bg-light" style="font-size:large;margin-top:10px;margin-left:10px;margin-bottom:10px;margin-right:-5px;">
-
-                    <div class="mb-1">Closed Cases</div>
-                    <div class="h2 font-weight-normal">
-                        @casesToday[7].closed
-                        @if (newCases[7].closed > 0)
+                        if (increase.confirmed == 1)
                         {
-
-
-                            if (increase.closed == 1)
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-seconday ml-3" style="font-size:small;display:inline-block;">@newCases[7].closed new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkslateblue"><i class="fa fa-arrow-up"></i> @precentage.closed%</div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-seconday ml-3" style="font-size:small;display:inline-block;">@newCases[7].closed new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkred"><i class="fa fa-arrow-down"></i> @precentage.closed%</div>
-                                </div>
-                            }
-
-
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.confirmed%</div>
+                            </div>
                         }
-                    </div>
+                        else
+                        {
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.confirmed%</div>
+                            </div>
+                        }
 
 
+                    }
                 </div>
 
-                <div class="pt-5 px-5 text-center font-weight-bold text-warning bg-light" style="font-size:large;margin:10px;">
-                    <div class="mb-1">Active Cases</div>
-                    <div class="h2 font-weight-normal">
-                        @casesToday[7].active
-                        @if (newCases[7].active > 0)
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="py-5  my-4 px-5 text-center font-weight-bold text-warning bg-light " style="font-size:large;">
+                <div class="mb-1">Active&ensp;Cases</div>
+                <div class="h2 font-weight-normal">
+                    @casesToday[7].active
+                    @if (newCases[7].active > 0)
+                    {
+
+                        if (increase.active == 1)
                         {
-
-                            if (increase.active == 1)
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.active%</div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.active%</div>
-                                </div>
-                            }
-
-
-
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.active%</div>
+                            </div>
                         }
-                    </div>
+                        else
+                        {
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.active%</div>
+                            </div>
+                        }
+
+
+
+                    }
                 </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="py-5  my-4 px-5 text-center font-weight-bold text-secondary bg-light" style="font-size:large;">
+                <div class="mb-1">Closed Cases</div>
+                <div class="h2 font-weight-normal">
+                    @casesToday[7].closed
+                    @if (newCases[7].closed > 0)
+                    {
 
-                <div class="pt-5 px-3 text-center  font-weight-bold  bg-light align-middle" style="margin:10px; font-size:large; text-decoration-color:black;">
-                    <div class="mb-1">Confirmed Cases</div>
-                    <div class="h2 font-weight-normal">
-                        @casesToday[7].confirmed
-                        @if (newCases[7].confirmed > 0)
+
+                        if (increase.closed == 1)
                         {
-
-                            if (increase.confirmed == 1)
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.confirmed%</div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-dark ml-3" style="font-size:small">@newCases[7].confirmed new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.confirmed%</div>
-                                </div>
-                            }
-
-
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-seconday ml-3" style="font-size:small;display:inline-block;">@newCases[7].closed new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkslateblue"><i class="fa fa-arrow-up"></i> @precentage.closed%</div>
+                            </div>
                         }
-                    </div>
+                        else
+                        {
+                            <div class="flex-column-reverse" style="display:inline-flex;">
+                                <span class="badge badge-seconday ml-3" style="font-size:small;display:inline-block;">@newCases[7].closed new</span>
+                                <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkred"><i class="fa fa-arrow-down"></i> @precentage.closed%</div>
+                            </div>
+                        }
 
+
+                    }
                 </div>
 
 
             </div>
         </div>
+        <div class="col-md-3 col-6">
+            <div class="flex-column-reverse">
+                <div class="py-4 mt-4 text-center font-weight-bold text-success bg-light" style="">
+
+                    <div class="" style="font-size:medium;display:inline">Recovered:</div>
+                    <div class="h2 font-weight-normal" style="display:inline">
+
+                        @casesToday[7].recovered
+
+                        @if (newCases[7].recovered > 0)
+                        {
+                            if (increase.recovered == 1)
+                            {
+                                <div class="flex-column-reverse" style="display:inline-flex;">
+                                    <span class="badge badge-success ml-3" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
+                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkslateblue"><i class="fa fa-arrow-up"></i> @precentage.recovered%</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="flex-column-reverse" style="display:inline-flex;">
+                                    <span class="badge badge-success ml-3" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
+                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkred"><i class="fa fa-arrow-down"></i> @precentage.recovered%</div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+                <div class="py-3 px-3 mt-3 mb-4 text-center font-weight-bold text-danger bg-light" style="">
+                    <div class="pr-5" style="font-size:medium;display:inline;">Deaths:</div>
+                    <div class="h2 font-weight-normal" style="display:inline;">
+
+                        @casesToday[7].deaths
+
+                        @if (newCases[7].deaths > 0)
+                        {
+
+                            if (increase.deaths == 1)
+                            {
+                                <div class="flex-column-reverse" style="display:inline-flex;">
+                                    <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
+                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.deaths%</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="flex-column-reverse" style="display:inline-flex;">
+                                    <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
+                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.deaths%</div>
+                                </div>
+                            }
+
+
+
+                        }
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
-
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title text-center">Provincial Stats</h3>
@@ -484,7 +418,7 @@
     </div>
     <div class="table-responsive">
         <table class="table table-hover" id="myTable" style="font-family:Calibri">
-            <thead style="font-size:medium;font-weight:300">
+            <thead style="font-size:medium;font-weight:300;">
                 <tr>
                     <th class=" text-uppercase small font-weight-bold">Province</th>
                     <th class=" text-uppercase small font-weight-bold">Total</th>
@@ -497,156 +431,197 @@
             <tbody style="font-size:small">
 
                 <tr>
-                    <th scope="row">Punjab</th>
-                    @* <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
-                        <td>123<span class="badge badge-pill badge-secondary ml-3">no change</span></td>
-                        <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
+                    <th style="vertical-align:middle">Punjab</th>
+
                     <td>
-                        @casesToday[1].confirmed
-                        @if (@newCases[1].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[1].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+
+                            @if (@newCases[1].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[1].confirmed new</span>
+                            }
+                            <div> @casesToday[1].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[1].active
-                        @if (@newCases[1].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[1].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[1].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[1].active new</span>
+                            }
+                            <div> @casesToday[1].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[1].closed
+                        <div class="flex-column-reverse">
 
-                        @if (@newCases[1].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[1].closed new</span>
-                        }
-                    </td>
-
-
-                    <td>
-                        @casesToday[1].recovered
-                        @if (@newCases[1].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[1].recovered new</span>
-                        }
-
+                            @if (@newCases[1].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[1].closed new</span>
+                            }
+                            <div>@casesToday[1].closed</div>
+                        </div>
                     </td>
 
 
                     <td>
-                        @casesToday[1].deaths
-                        @if (@newCases[1].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[1].deaths new</span>
-                        }
-                    </td>
-                </tr>
-                <tr>
+                        <div class="flex-column-reverse">
 
-                    <th scope="row">Sindh</th>
-                    <td>
-                        @casesToday[0].confirmed
-                        @if (@newCases[0].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[0].confirmed new</span>
-                        }
-                    </td>
-                    <td>
-                        @casesToday[0].active
-                        @if (@newCases[0].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[0].active new</span>
-                        }
-
-                    </td>
-                    <td>
-                        @casesToday[0].closed
-
-                        @if (@newCases[0].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[0].closed new</span>
-                        }
-                    </td>
-
-
-                    <td>
-                        @casesToday[0].recovered
-                        @if (@newCases[0].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[0].recovered new</span>
-                        }
+                            @if (@newCases[1].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[1].recovered new</span>
+                            }
+                            <div>@casesToday[1].recovered</div>
+                        </div>
 
                     </td>
 
 
                     <td>
-                        @casesToday[0].deaths
-                        @if (@newCases[0].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[0].deaths new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[1].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[1].deaths new</span>
+                            }
+                            <div> @casesToday[1].deaths</div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">KPK</th>
+
+                    <th style="vertical-align:middle">Sindh</th>
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[0].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[0].confirmed new</span>
+                            }
+                            <div> @casesToday[0].confirmed</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[0].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[0].active new</span>
+                            }
+                            <div>  @casesToday[0].active</div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="flex-column-reverse">
+
+
+                            @if (@newCases[0].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary " style="left:1.3em;position:relative;">@newCases[0].closed new</span>
+                            }
+                            <div> @casesToday[0].closed</div>
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[0].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success " style="left:1.3em;position:relative;">@newCases[0].recovered new</span>
+                            }
+                            <div> @casesToday[0].recovered</div>
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[0].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[0].deaths new</span>
+                            }
+                            <div> @casesToday[0].deaths</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="vertical-align:middle">KPK</th>
                     @* <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
                         <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
                     <td>
-                        @casesToday[2].confirmed
-                        @if (@newCases[2].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[2].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[2].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[2].confirmed new</span>
+                            }
+                            <div>@casesToday[2].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[2].active
-                        @if (@newCases[2].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[2].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[2].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[2].active new</span>
+                            }
+                            <div> @casesToday[2].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[2].closed
-
-                        @if (@newCases[2].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top: -1em; position: relative;">@newCases[2].closed new</span>
-                        }
-                    </td>
+                        <div class="flex-column-reverse">
 
 
-                    <td>
-                        @casesToday[2].recovered
-                        @if (@newCases[2].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[2].recovered new</span>
-                        }
-
+                            @if (@newCases[2].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em; position: relative;">@newCases[2].closed new</span>
+                            }
+                            <div>@casesToday[2].closed</div>
+                        </div>
                     </td>
 
 
                     <td>
-                        @casesToday[2].deaths
-                        @if (@newCases[2].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[2].deaths new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[2].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[2].recovered new</span>
+                            }
+                            <div> @casesToday[2].recovered</div>
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[2].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[2].deaths new</span>
+                            }
+                            <div> @casesToday[2].deaths</div>
+                        </div>
                     </td>
 
 
                 </tr>
 
                 <tr>
-                    <th scope="row">Balochistan</th>
+                    <th style="vertical-align:middle">Balochistan</th>
                     @*<td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
                         <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
@@ -654,52 +629,67 @@
                         <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
 
                     <td>
-                        @casesToday[5].confirmed
-                        @if (@newCases[5].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[5].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[5].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[5].confirmed new</span>
+                            }
+                            <div> @casesToday[5].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[5].active
-                        @if (@newCases[5].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[5].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[5].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[5].active new</span>
+                            }
+                            <div>@casesToday[5].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[3].closed
-
-                        @if (@newCases[3].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[3].closed new</span>
-                        }
-                    </td>
+                        <div class="flex-column-reverse">
 
 
-                    <td>
-                        @casesToday[5].recovered
-                        @if (@newCases[5].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[5].recovered new</span>
-                        }
-
+                            @if (@newCases[5].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[3].closed new</span>
+                            }
+                            <div> @casesToday[5].closed</div>
+                        </div>
                     </td>
 
 
                     <td>
-                        @casesToday[5].deaths
-                        @if (@newCases[5].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[5].deaths new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[5].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[5].recovered new</span>
+                            }
+                            <div>@casesToday[5].recovered</div>
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[5].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[5].deaths new</span>
+                            }
+                            <div> @casesToday[5].deaths</div>
+                        </div>
                     </td>
 
 
                 </tr>
                 <tr>
-                    <th scope="row">Islamabad</th>
+                    <th style="vertical-align:middle">Islamabad</th>
                     @*<td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
                         <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
@@ -707,145 +697,192 @@
                         <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
 
                     <td>
-                        @casesToday[3].confirmed
-                        @if (@newCases[3].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[3].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[3].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[3].confirmed new</span>
+                            }
+                            <div>@casesToday[3].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[3].active
-                        @if (@newCases[3].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[3].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[3].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[3].active new</span>
+                            }
+                            <div> @casesToday[3].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[3].closed
+                        <div class="flex-column-reverse">
 
-                        @if (@newCases[3].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[3].closed new</span>
-                        }
+
+                            @if (@newCases[3].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[3].closed new</span>
+                            }
+                            <div>@casesToday[3].closed</div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[3].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[3].recovered new</span>
+                            }
+                            <div> @casesToday[3].recovered</div>
+                        </div>
+
                     </td>
 
 
                     <td>
-                        @casesToday[3].recovered
-                        @if (@newCases[3].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[3].recovered new</span>
-                        }
+                        <div class="flex-column-reverse">
 
-                    </td>
-
-
-                    <td>
-                        @casesToday[3].deaths
-                        @if (@newCases[3].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[3].deaths new</span>
-                        }
+                            @if (@newCases[3].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[3].deaths new</span>
+                            }
+                            <div> @casesToday[3].deaths</div>
+                        </div>
                     </td>
 
 
                 </tr>
                 <tr>
-                    <th scope="row">Gilgit Baltistan</th>
+                    <th style="vertical-align:middle">Gilgit Baltistan</th>
 
                     <td>
-                        @casesToday[4].confirmed
-                        @if (@newCases[4].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[4].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[4].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark " style="left:1.3em;position:relative;">@newCases[4].confirmed new</span>
+                            }
+                            <div>@casesToday[4].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[4].active
-                        @if (@newCases[4].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[4].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[4].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[4].active new</span>
+                            }
+                            <div>@casesToday[4].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[4].closed
-
-                        @if (@newCases[4].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[4].closed new</span>
-                        }
-                    </td>
+                        <div class="flex-column-reverse">
 
 
-                    <td>
-                        @casesToday[4].recovered
-                        @if (@newCases[4].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[4].recovered new</span>
-                        }
-
+                            @if (@newCases[4].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[4].closed new</span>
+                            }
+                            <div> @casesToday[4].closed</div>
+                        </div>
                     </td>
 
 
                     <td>
-                        @casesToday[4].deaths
-                        @if (@newCases[4].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[4].deaths new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[4].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[4].recovered new</span>
+                            }
+                            <div> @casesToday[4].recovered</div>
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[4].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[4].deaths new</span>
+                            }
+                            <div>@casesToday[4].deaths</div>
+                        </div>
                     </td>
 
                 </tr>
                 <tr>
-                    <th scope="row">Azad Kashmir</th>
+                    <th style="vertical-align:middle">Azad Kashmir</th>
                     @* <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
                         <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
                         <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
                     <td>
-                        @casesToday[6].confirmed
-                        @if (@newCases[6].confirmed > 0)
-                        {
-                            <span class="badge badge-pill badge-dark ml-1" style="top:-1em;position:relative;">@newCases[6].confirmed new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[6].confirmed > 0)
+                            {
+                                <span class="badge badge-pill badge-dark" style="left:1.3em;position:relative;">@newCases[6].confirmed new</span>
+                            }
+                            <div> @casesToday[6].confirmed</div>
+                        </div>
                     </td>
                     <td>
-                        @casesToday[6].active
-                        @if (@newCases[6].active > 0)
-                        {
-                            <span class="badge badge-pill badge-warning ml-1" style="top:-1em;position:relative;">@newCases[6].active new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[6].active > 0)
+                            {
+                                <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[6].active new</span>
+                            }
+                            <div> @casesToday[6].active</div>
+                        </div>
 
                     </td>
                     <td>
-                        @casesToday[6].closed
-
-                        @if (@newCases[6].closed > 0)
-                        {
-                            <span class="badge badge-pill badge-secondary ml-1" style="top:-1em;position:relative;">@newCases[6].closed new</span>
-                        }
-                    </td>
+                        <div class="flex-column-reverse">
 
 
-                    <td>
-                        @casesToday[6].recovered
-                        @if (@newCases[6].recovered > 0)
-                        {
-                            <span class="badge badge-pill badge-success ml-1" style="top:-1em;position:relative;">@newCases[6].recovered new</span>
-                        }
-
+                            @if (@newCases[6].closed > 0)
+                            {
+                                <span class="badge badge-pill badge-secondary " style="left:1.3em;position:relative;">@newCases[6].closed new</span>
+                            }
+                            <div>
+                                @casesToday[6].closed
+                            </div>
+                        </div>
                     </td>
 
 
                     <td>
-                        @casesToday[6].deaths
-                        @if (@newCases[6].deaths > 0)
-                        {
-                            <span class="badge badge-pill badge-danger ml-1" style="top:-1em;position:relative;">@newCases[6].deaths new</span>
-                        }
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[6].recovered > 0)
+                            {
+                                <span class="badge badge-pill badge-success" style="left:1.3em;position:relative;">@newCases[6].recovered new</span>
+                            }
+                            <div> @casesToday[6].recovered</div>
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        <div class="flex-column-reverse">
+
+                            @if (@newCases[6].deaths > 0)
+                            {
+                                <span class="badge badge-pill badge-danger" style="left:1.3em;position:relative;">@newCases[6].deaths new</span>
+                            }
+
+                            <div> @casesToday[6].deaths</div>
+                        </div>
                     </td>
                 </tr>
 
@@ -862,7 +899,7 @@
     </div>
     <script>
         function statistics_onload_function() {
-            
+
             var param3 = @Html.Raw(ViewBag.casesToday1) ;
 
 
@@ -875,8 +912,6 @@
         }
     </script>
 
+
 </body>
-
 </html>
-
-
