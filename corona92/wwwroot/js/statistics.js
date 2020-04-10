@@ -265,7 +265,7 @@ renderCoronaRatePlotProvinces = function (ctx, datesOfCases, punjab, sindh, kpk,
     });
 }
 function showStackedBarPlot(data) {
-   
+
     var ctx = document.getElementById("StackedBarPlot").getContext('2d');
     var dates = ['26 March', '27 March', '28 March', '29 March', '30 March', '31 March'];
     var cases = [50, 20, 23, 45, 15, 16];
@@ -286,7 +286,17 @@ function showStackedBarPlot(data) {
 
     //}
 
-    renderStackedBarPlot(ctx, cases1, recovered1, deaths1);
+    //renderCoronaRatePlotProvinces(ctx, dates1, casesInPunjab1, casesInSindh1, casesInKPK1, casesInBalochistan1, casesInAJK1, casesInGB1, casesInIslambad1);
+    if (deviceType() == "Mobile") {
+        //document.getElementById("StackedBarPlot").height = 1000;
+        //document.getElementById("StackedBarPlot").width = 300;
+        document.getElementById("StackedBarPlot").height = 1000;
+        document.getElementById("StackedBarPlot").width = 1000;
+        renderStackedBarPlot(ctx, cases1, recovered1, deaths1);
+    }
+    else {
+        renderStackedBarPlot(ctx, cases1, recovered1, deaths1);
+    }
 }
 function showCoronaRatePlotProvinces(data) {
     var ctx = document.getElementById("CoronaRatePlotProvinces").getContext('2d');
@@ -307,7 +317,7 @@ function showCoronaRatePlotProvinces(data) {
     var casesInAJK1 = Array();
     var casesInGB1 = Array();
     var casesInIslambad1 = Array();
-        //sindh = 0, punjab = 1, KPK = 2, ISL = 3, GB = 4, Balochistan = 5, AJK = 6, Pakistan = 7
+    //sindh = 0, punjab = 1, KPK = 2, ISL = 3, GB = 4, Balochistan = 5, AJK = 6, Pakistan = 7
     var i;
     for (i = 0; i < data.length; i = i + 8) {
         dates1.push(data[i + 0]["date"]);
@@ -320,19 +330,34 @@ function showCoronaRatePlotProvinces(data) {
         casesInAJK1.push(data[i + 6]["confirmed"]);
     }
     //renderCoronaRatePlotProvinces(ctx, dates, casesInPunjab, casesInSindh, casesInKPK, casesInBalochistan, casesInAJK, casesInGB, casesInIslambad);
-    renderCoronaRatePlotProvinces(ctx, dates1, casesInPunjab1, casesInSindh1, casesInKPK1, casesInBalochistan1, casesInAJK1, casesInGB1, casesInIslambad1);
-    setStatisticsGraphs();
+    //renderCoronaRatePlotProvinces(ctx, dates1, casesInPunjab1, casesInSindh1, casesInKPK1, casesInBalochistan1, casesInAJK1, casesInGB1, casesInIslambad1);
+    if (deviceType() == "Mobile") {
+        //document.getElementById("StackedBarPlot").height = 1000;
+        //document.getElementById("StackedBarPlot").width = 300;
+        document.getElementById("CoronaRatePlotProvinces").height = 1000;
+        document.getElementById("CoronaRatePlotProvinces").width = 1000;
+        renderCoronaRatePlotProvinces(ctx, dates1, casesInPunjab1, casesInSindh1, casesInKPK1, casesInBalochistan1, casesInAJK1, casesInGB1, casesInIslambad1);
+    }
+    else {
+        renderCoronaRatePlotProvinces(ctx, dates1, casesInPunjab1, casesInSindh1, casesInKPK1, casesInBalochistan1, casesInAJK1, casesInGB1, casesInIslambad1);
+    }
+
+
 }
 
 function setStatisticsGraphs() {
     try {
         if (deviceType() == "Mobile") {
-            document.getElementById("myChart").height = 450;
-            //document.getElementById("myChart2").width = "300px";
-            document.getElementById("myChart2").height = 600;
+            //document.getElementById("StackedBarPlot").height = 1000;
+            document.getElementById("StackedBarPlot").width = 300;
+            document.getElementById("CoronaRatePlotProvinces").height = 300;
+            document.getElementById("CoronaRatePlotProvinces").width = 300;
         }
         else {
-            alert("windows");
+            //alert("windows");
+            //document.getElementById("StackedBarPlot").height = 450;
+            //document.getElementById("myChart2").width = "300px";
+            //document.getElementById("CoronaRatePlotProvinces").height = 600;
         }
     }
     catch (err) {
