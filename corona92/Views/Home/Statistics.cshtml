@@ -25,22 +25,7 @@
     <style>
 
 
-        div.a {
-            font-size: 20px;
-            font-weight: 400;
-        }
-
-        .btn-app {
-            position: relative;
-            margin: 0 0 10px 10px;
-            min-width: 80px;
-            height: 1px;
-            text-align: center;
-            color: #e62020;
-            border: 0;
-            font-weight: bold;
-        }
-
+       
         .p-2 {
             padding: 0.6rem !important;
             font-size: 15px;
@@ -49,107 +34,6 @@
         .p-3 {
             padding: 0.6rem !important;
             font-size: 25px;
-        }
-
-        .center {
-            margin: auto;
-            width: 60%;
-            border: 20px solid #73AD21;
-            padding: 10px;
-        }
-
-        .badge1 {
-            position: absolute;
-            top: -3px;
-            right: -10px;
-            font-size: 12px;
-            font-weight: 400
-        }
-
-        .btn-app > .badge {
-            position: absolute;
-            top: -3px;
-            right: -10px;
-            font-size: 9px;
-            font-weight: 400
-        }
-
-        .btn-app > .maincasesbadge {
-            position: absolute;
-            top: 10px;
-            right: -15px;
-            font-size: 10px;
-            font-weight: 400
-        }
-
-        /* INNER PAGES COUNTERS */
-        #maincounter-wrap {
-            margin: auto;
-            text-align: center;
-            padding-top: 20px
-        }
-
-            #maincounter-wrap h1 {
-                font-family: 'Roboto Condensed', sans-serif;
-                font-weight: 300;
-                font-size: 40px;
-                color: #555;
-                margin: 0;
-            }
-
-        .maincounter-number {
-            font-weight: 400;
-            color: #696969;
-            font-size: 80px;
-        }
-
-        .maincounter-number-gdp {
-            font-weight: 700;
-            color: #696969;
-            font-size: 60px;
-        }
-
-        #viewall {
-            font-size: 16px;
-            color: #C0C0C0;
-            padding-bottom: 30px;
-            text-align: center;
-        }
-
-            #viewall a:link {
-                color: #C0C0C0;
-                text-decoration: none;
-            }
-
-            #viewall a:visited {
-                color: #C0C0C0;
-                text-decoration: none;
-            }
-
-            #viewall a:hover {
-                color: #333333;
-                text-decoration: none;
-            }
-
-        .GFG1 {
-            grid-area: heading;
-            background-color: grey
-        }
-
-        .GFG2 {
-            grid-area: margin;
-        }
-
-        .GFG3 {
-            grid-area: sec;
-        }
-
-        .GFG5 {
-            grid-area: sec1;
-        }
-
-        .GFG4 {
-            grid-area: info;
         }
 
         .main {
@@ -161,13 +45,6 @@
             grid-template-areas: 'margin sec sec1 heading heading heading ' 'margin sec sec1 info info info';
         }
 
-        .GFG {
-            background-color: white;
-            text-align: center;
-            padding: 5px;
-            font-size: 20px;
-            font-weight: 300;
-        }
 
         body {
             background-color: white;
@@ -204,34 +81,6 @@
         }
 
 
-        .table-responsive-stack td,
-        .table-responsive-stack th {
-            display: block;
-            /*
-        flex-grow | flex-shrink | flex-basis   */
-            -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-        }
-
-        .table-responsive-stack .table-responsive-stack-thead {
-            font-weight: bold;
-        }
-
-        @@media screen and (max-width: 768px) {
-            .table-responsive-stack tr {
-                -webkit-box-orient: vertical;
-                -webkit-box-direction: normal;
-                -ms-flex-direction: column;
-                flex-direction: column;
-                border-bottom: 3px solid #ccc;
-                display: block;
-            }
-            /*  IE9 FIX   */
-            .table-responsive-stack td {
-                float: left\9;
-                width: 100%;
-            }
-        }
 
         .position {
             background-color: red;
@@ -240,10 +89,6 @@
             text-align: center;
         }
 
-        @@media screen and (max-width: 250px) {
-            .mobileScr {
-            }
-        }
     </style>
 
     <!-- Font Awesome JS -->
@@ -257,7 +102,7 @@
 
     <div class="row justify-content-center bg-dark mx-5 " style="margin-bottom:20px; margin-top:20px; ">
 
-        <div class="col-md-3 col-6">
+        <div class="col-lg-3 col-6">
             <div class="py-5  my-4  px-5 text-center  font-weight-bold  bg-light align-middle " style="font-size:large; text-decoration-color:black;">
                 <div class="mb-1">Confirmed Cases</div>
                 <div class="h2 font-weight-normal">
@@ -286,7 +131,7 @@
 
             </div>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-lg-3 col-6">
             <div class="py-5  my-4 px-5 text-center font-weight-bold text-warning bg-light " style="font-size:large;">
                 <div class="mb-1">Active&ensp;Cases</div>
                 <div class="h2 font-weight-normal">
@@ -315,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-lg-3 col-6">
             <div class="py-5  my-4 px-5 text-center font-weight-bold text-secondary bg-light" style="font-size:large;">
                 <div class="mb-1">Closed Cases</div>
                 <div class="h2 font-weight-normal">
@@ -346,11 +191,12 @@
 
             </div>
         </div>
-        <div class="col-md-3 col-6">
-            <div class="flex-column-reverse">
+        <div class="col-lg-3 col-6">
+            <div class="flex-column-reverse justify-content-center">
                 <div class="py-4 mt-4 text-center font-weight-bold text-success bg-light" style="">
 
                     <div class="" style="font-size:medium;display:inline">Recovered:</div>
+
                     <div class="h2 font-weight-normal" style="display:inline">
 
                         @casesToday[7].recovered
@@ -375,9 +221,9 @@
                         }
                     </div>
                 </div>
-                <div class="py-3 px-3 mt-3 mb-4 text-center font-weight-bold text-danger bg-light" style="">
-                    <div class="pr-5" style="font-size:medium;display:inline;">Deaths:</div>
-                    <div class="h2 font-weight-normal" style="display:inline;">
+                <div class="py-3 px-3 mt-3 mb-4 text-center font-weight-bold text-danger bg-light " style="">
+                    <div class="pr-3" style="font-size:medium;display:inline;">Deaths:</div>
+                    <div class="h2 font-weight-normal " style="display:inline; ">
 
                         @casesToday[7].deaths
 
@@ -421,11 +267,11 @@
             <thead style="font-size:medium;font-weight:300;">
                 <tr>
                     <th class=" text-uppercase small font-weight-bold">Province</th>
-                    <th class=" text-uppercase small font-weight-bold">Total</th>
-                    <th class=" text-uppercase small font-weight-bold">Active</th>
-                    <th class=" text-uppercase small font-weight-bold">Closed</th>
-                    <th class=" text-uppercase small font-weight-bold">Recovered</th>
-                    <th class=" text-uppercase small font-weight-bold">Deaths</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Total</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Active</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Closed</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Recovered</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Deaths</th>
                 </tr>
             </thead>
             <tbody style="font-size:small">
@@ -433,7 +279,7 @@
                 <tr>
                     <th style="vertical-align:middle">Punjab</th>
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -444,7 +290,7 @@
                             <div> @casesToday[1].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[1].active > 0)
@@ -455,7 +301,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[1].closed > 0)
@@ -467,7 +313,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[1].recovered > 0)
@@ -480,7 +326,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[1].deaths > 0)
@@ -494,7 +340,7 @@
                 <tr>
 
                     <th style="vertical-align:middle">Sindh</th>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[0].confirmed > 0)
@@ -504,7 +350,7 @@
                             <div> @casesToday[0].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[0].active > 0)
@@ -515,7 +361,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -528,7 +374,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[0].recovered > 0)
@@ -541,7 +387,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[0].deaths > 0)
@@ -554,12 +400,7 @@
                 </tr>
                 <tr>
                     <th style="vertical-align:middle">KPK</th>
-                    @* <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
-                        <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
-                    <td>
+                   <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[2].confirmed > 0)
@@ -569,7 +410,7 @@
                             <div>@casesToday[2].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[2].active > 0)
@@ -580,7 +421,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -593,7 +434,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[2].recovered > 0)
@@ -606,7 +447,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[2].deaths > 0)
@@ -622,13 +463,7 @@
 
                 <tr>
                     <th style="vertical-align:middle">Balochistan</th>
-                    @*<td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
-                        <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
-
-                    <td>
+                     <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[5].confirmed > 0)
@@ -638,7 +473,7 @@
                             <div> @casesToday[5].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[5].active > 0)
@@ -649,7 +484,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -662,7 +497,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[5].recovered > 0)
@@ -675,7 +510,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[5].deaths > 0)
@@ -690,13 +525,8 @@
                 </tr>
                 <tr>
                     <th style="vertical-align:middle">Islamabad</th>
-                    @*<td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
-                        <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
-
-                    <td>
+                   
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[3].confirmed > 0)
@@ -706,7 +536,7 @@
                             <div>@casesToday[3].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[3].active > 0)
@@ -717,7 +547,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -729,7 +559,7 @@
                         </div>
                     </td>
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[3].recovered > 0)
@@ -742,7 +572,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[3].deaths > 0)
@@ -758,7 +588,7 @@
                 <tr>
                     <th style="vertical-align:middle">Gilgit Baltistan</th>
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[4].confirmed > 0)
@@ -768,7 +598,7 @@
                             <div>@casesToday[4].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[4].active > 0)
@@ -779,7 +609,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -792,7 +622,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[4].recovered > 0)
@@ -805,7 +635,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[4].deaths > 0)
@@ -819,12 +649,7 @@
                 </tr>
                 <tr>
                     <th style="vertical-align:middle">Azad Kashmir</th>
-                    @* <td>123<span class="badge badge-pill badge-dark ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-warning ml-3">3 new</span></td>
-                        <td>123<span class="badge badge-pill badge-secondary ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-success ml-3">3 new</span></td>
-                        <td>52<span class="badge badge-pill badge-danger ml-3">3 new</span></td>*@
-                    <td>
+                     <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[6].confirmed > 0)
@@ -834,7 +659,7 @@
                             <div> @casesToday[6].confirmed</div>
                         </div>
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[6].active > 0)
@@ -845,7 +670,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
 
@@ -860,7 +685,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[6].recovered > 0)
@@ -873,7 +698,7 @@
                     </td>
 
 
-                    <td>
+                    <td class="px-5">
                         <div class="flex-column-reverse">
 
                             @if (@newCases[6].deaths > 0)
