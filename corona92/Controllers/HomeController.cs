@@ -75,7 +75,7 @@ namespace corona92.Controllers
                 today.recovered = todaycases[i].recovered - yesterdaycases[i].recovered;
                 newCases.Add(today);
             }
-            
+            today.active=Math.Abs(today.active);
                 newYesterday = new DailyCases();
                 newYesterday.province = yesterdaycases[7].province;
                 newYesterday.city = yesterdaycases[7].city;
@@ -93,11 +93,11 @@ namespace corona92.Controllers
             double closedCasesPercentage = ((double)today.closed / (double)newYesterday.closed )*100;
             double deathsCasesPercentage = ((double)today.deaths / (double)newYesterday.deaths ) * 100;
             double recoveredCasesPercentage = ((double)today.recovered / (double)newYesterday.recovered  ) * 100;
-            percentage.confirmed = (int)confirmedCasesPercentage;
-            percentage.closed = (int)closedCasesPercentage;
-            percentage.active = (int)activeCasesPercentage;
-            percentage.deaths = (int)deathsCasesPercentage;
-            percentage.recovered = (int)recoveredCasesPercentage;
+            percentage.confirmed = Math.Abs((int)confirmedCasesPercentage);
+            percentage.closed = Math.Abs((int)closedCasesPercentage);
+            percentage.active = Math.Abs(((int)activeCasesPercentage));
+            percentage.deaths = Math.Abs((int)deathsCasesPercentage);
+            percentage.recovered = Math.Abs((int)recoveredCasesPercentage);
             //set falg to show increase or decrese
             DailyCases increase = new DailyCases(); increase.confirmed = 0;increase.active = 0;increase.closed = 0;
             increase.deaths = 0; increase.recovered = 0;

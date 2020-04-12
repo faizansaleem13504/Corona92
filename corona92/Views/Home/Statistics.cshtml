@@ -135,11 +135,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-6 ">
-            <div class="py-3  my-4 text-center font-weight-bold text-warning bg-light " style="font-size:large;">
+            <div class="py-3  my-4 text-center font-weight-bold text-warning bg-light " style="font-size:large;float:right;width:100%">
                 <div class="mb-1">Active&ensp;Cases</div>
                 <div class="h2 font-weight-normal">
                     @casesToday[7].active
-                    @if (newCases[7].active > 0)
+                    @if (casesToday[7].active != 0)
                     {
 
                         if (increase.active == 1)
@@ -152,19 +152,19 @@
                         else
                         {
                             <div class="flex-column-reverse" style="display:inline-flex;">
-                                <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active new</span>
+                                <span class="badge badge-warning ml-3" style="font-size:small">@newCases[7].active less</span>
                                 <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.active%</div>
                             </div>
                         }
 
 
-
                     }
+
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-6 col-6">
-            <div class="py-3  my-4 text-center font-weight-bold text-secondary bg-light" style="font-size:large;">
+            <div class="py-3  my-4 text-center font-weight-bold text-secondary bg-light" style="font-size:large;float:right;width:100%">
                 <div class="mb-1">Closed Cases</div>
                 <div class="h2 font-weight-normal">
                     @casesToday[7].closed
@@ -217,7 +217,10 @@
                             {
                                 <div class="flex-column-reverse" style="display:inline-flex;">
                                     <span class="badge badge-success" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
-                                    <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkred"><i class="fa fa-arrow-down"></i> @precentage.recovered%</div>
+                                    <div style="        display: inline-block;
+        padding-bottom: 0.2em;
+        font-size: smaller;
+        color: darkred"><i class="fa fa-arrow-down"></i> @precentage.recovered%</div>
                                 </div>
                             }
 
