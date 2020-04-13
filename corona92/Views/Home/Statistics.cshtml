@@ -106,9 +106,9 @@
     <div class="row justify-content-center bg-dark " style="margin-bottom:20px; margin-top:20px; ">
 
         <div class="col-lg-3 col-6">
-            <div class="py-3  my-4  px-1 text-center  font-weight-bold  bg-light align-middle " style="font-size:large; text-decoration-color:black;">
+            <div class="py-3  my-4  px-1 text-center  font-weight-bold  bg-light align-middle " style="font-size:medium; text-decoration-color:black;">
                 <div class="mb-1">Confirmed Cases</div>
-                <div class="h2 font-weight-normal">
+                <div class="h3 font-weight-normal">
                     @casesToday[7].confirmed
                     @if (newCases[7].confirmed > 0)
                     {
@@ -135,11 +135,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-6 ">
-            <div class="py-3  my-4 text-center font-weight-bold text-warning bg-light " style="font-size:large;float:right;width:100%">
+            <div class="py-3  my-4 text-center font-weight-bold text-warning bg-light " style="font-size:medium;float:right;width:100%">
                 <div class="mb-1">Active&ensp;Cases</div>
-                <div class="h2 font-weight-normal">
+                <div class="h3 font-weight-normal">
                     @casesToday[7].active
-                    @if (casesToday[7].active != 0)
+                    @if (newCases[7].active != 0)
                     {
 
                         if (increase.active == 1)
@@ -164,9 +164,9 @@
             </div>
         </div>
         <div class="col-lg-3 col-6 col-6">
-            <div class="py-3  my-4 text-center font-weight-bold text-secondary bg-light" style="font-size:large;float:right;width:100%">
+            <div class="py-3  my-4 text-center font-weight-bold text-secondary bg-light" style="font-size:medium;float:right;width:100%">
                 <div class="mb-1">Closed Cases</div>
-                <div class="h2 font-weight-normal">
+                <div class="h3 font-weight-normal">
                     @casesToday[7].closed
                     @if (newCases[7].closed > 0)
                     {
@@ -198,9 +198,9 @@
             <div class="flex-column-reverse justify-content-center">
                 <div class="py-2 mt-4 text-center font-weight-bold text-success bg-light" style="">
 
-                    <div class="" style="font-size:medium;display:inline">Recovered:</div>
+                    <div class="" style="font-size:medium;display:inline">Cured:</div>
 
-                    <div class="h2 font-weight-normal" style="display:inline">
+                    <div class="h4 font-weight-normal" style="display:inline">
 
                         @casesToday[7].recovered
 
@@ -209,7 +209,7 @@
                             if (increase.recovered == 1)
                             {
                                 <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-success" style="font-size:small;vertical-align:middle;">@newCases[7].recovered new</span>
+                                    <span class="badge badge-success" style="font-size:smaller;vertical-align:middle;">@newCases[7].recovered new</span>
                                     <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkslateblue"><i class="fa fa-arrow-up"></i> @precentage.recovered%</div>
                                 </div>
                             }
@@ -227,9 +227,9 @@
                         }
                     </div>
                 </div>
-                <div class="py-1 mt-3 mb-4 text-center font-weight-bold text-danger bg-light " style="">
-                    <div class="pr-3" style="font-size:medium;display:inline;">Deaths:</div>
-                    <div class="h2 font-weight-normal " style="display:inline; ">
+                <div class="py-2 mt-3 mb-4 text-center font-weight-bold text-danger bg-light " style="">
+                    <div class="pr-3" style="font-size:small;display:inline;">Deaths:</div>
+                    <div class="h4 font-weight-normal " style="display:inline; ">
 
                         @casesToday[7].deaths
 
@@ -239,14 +239,14 @@
                             if (increase.deaths == 1)
                             {
                                 <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
+                                    <span class="badge badge-danger ml-3" style="font-size:smaller"> @newCases[7].deaths new</span>
                                     <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller; color:darkred"><i class="fa fa-arrow-up"></i> @precentage.deaths%</div>
                                 </div>
                             }
                             else
                             {
                                 <div class="flex-column-reverse" style="display:inline-flex;">
-                                    <span class="badge badge-danger ml-3" style="font-size:small"> @newCases[7].deaths new</span>
+                                    <span class="badge badge-danger ml-3" style="font-size:smaller"> @newCases[7].deaths new</span>
                                     <div style="display:inline-block;padding-bottom:0.2em;font-size:smaller;color:darkslateblue"><i class="fa fa-arrow-down"></i> @precentage.deaths%</div>
                                 </div>
                             }
@@ -276,7 +276,7 @@
                     <th class="px-5 text-uppercase small font-weight-bold">Total</th>
                     <th class="px-5 text-uppercase small font-weight-bold">Active</th>
                     <th class="px-5 text-uppercase small font-weight-bold">Closed</th>
-                    <th class="px-5 text-uppercase small font-weight-bold">Recovered</th>
+                    <th class="px-5 text-uppercase small font-weight-bold">Cured</th>
                     <th class="px-5 text-uppercase small font-weight-bold">Deaths</th>
                 </tr>
             </thead>
