@@ -228,7 +228,7 @@
                     </div>
                 </div>
                 <div class="py-2 mt-3 mb-4 text-center font-weight-bold text-danger bg-light " style="">
-                    <div class="pr-3" style="font-size:small;display:inline;">Deaths:</div>
+                    <div class="pr-3" style="font-size:medium;display:inline;">Deaths:</div>
                     <div class="h4 font-weight-normal " style="display:inline; ">
 
                         @casesToday[7].deaths
@@ -482,7 +482,7 @@
                     <td class="px-5">
                         <div class="flex-column-reverse">
 
-                            @if (@newCases[5].active > 0)
+                            @if (newCases[5].active > 0)
                             {
                                 <span class="badge badge-pill badge-warning" style="left:1.3em;position:relative;">@newCases[5].active new</span>
                             }
@@ -496,13 +496,12 @@
 
                             @if (@newCases[5].closed > 0)
                             {
-                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[3].closed new</span>
+                                <span class="badge badge-pill badge-secondary" style="left:1.3em;position:relative;">@newCases[5].closed new</span>
                             }
                             <div> @casesToday[5].closed</div>
                         </div>
                     </td>
-
-
+                    
                     <td class="px-5">
                         <div class="flex-column-reverse">
 
