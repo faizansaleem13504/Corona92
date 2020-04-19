@@ -105,6 +105,8 @@ namespace corona92.Controllers
                 increase.confirmed = 1;
             if (today.active > newYesterday.active)
                 increase.active = 1;
+            else
+                today.active = newYesterday.active - today.active;
             if (today.closed > newYesterday.closed)
                 increase.closed = 1;
             if (today.deaths > newYesterday.deaths)

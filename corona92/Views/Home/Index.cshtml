@@ -5,6 +5,7 @@
     int countConfirmed = 0;
     int countDeaths = 0;
     int countRecovered = 0;
+    int tempIds=0;
 }
 @{
     ViewData["Title"] = "Home";
@@ -29,7 +30,7 @@
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
     <style>
-
+       
         body {
             background-color: white;
             margin-top: 10px;
@@ -42,7 +43,6 @@
             top: 0px;
             background: white;
         }
-
         #myInput {
             background-position: 10px 12px; /* Position the search icon */
             background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -146,8 +146,10 @@
                                         <tbody>
                                             @{
                                                 var cityname = "";
-                                                foreach (var cases in Model)
+                                                //foreach (var cases in Model)
+                                                for (int i = 0; i < Model.Count - 2; i++)
                                                 {
+                                                    var cases = Model[i];
                                                     if ((@cases.confirmed != 0 || cases.deaths != 0 || cases.recovered != 0) && cases.longitude != 0)
                                                     {
                                                         cityname = @cases.city;
@@ -156,14 +158,13 @@
                                                             cityname = "Unspecified Cities";
                                                         }
 
-
-                                                        <tr>
-                                                            <td>@cityname</td>
-                                                            <td>@cases.province</td>
-                                                            <td>@cases.confirmed</td>
-                                                            <td>@cases.deaths</td>
-                                                            <td>@cases.recovered</td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>@cityname</td>
+                                                                <td>@cases.province</td>
+                                                                <td>@cases.confirmed</td>
+                                                                <td>@cases.deaths</td>
+                                                                <td>@cases.recovered</td>
+                                                            </tr>
                                                     }
                                                 }
                                             }
