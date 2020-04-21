@@ -75,7 +75,7 @@ namespace corona92.Controllers
                 today.recovered = todaycases[i].recovered - yesterdaycases[i].recovered;
                 newCases.Add(today);
             }
-                today.active=Math.Abs(today.active);
+                //today.active=Math.Abs(today.active);
                 newYesterday = new DailyCases();
                 newYesterday.province = yesterdaycases[7].province;
                 newYesterday.city = yesterdaycases[7].city;
@@ -103,10 +103,10 @@ namespace corona92.Controllers
             increase.deaths = 0; increase.recovered = 0;
             if (today.confirmed > newYesterday.confirmed)
                 increase.confirmed = 1;
-            if (today.active > newYesterday.active)
+            if (today.active > 0)
                 increase.active = 1;
             else
-                today.active = newYesterday.active - today.active;
+                today.active = Math.Abs(today.active);
             if (today.closed > newYesterday.closed)
                 increase.closed = 1;
             if (today.deaths > newYesterday.deaths)
