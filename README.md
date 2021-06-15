@@ -3,6 +3,7 @@
 Corona92.com was a website that provided realtime city-wise corona cases updates of all the cities in 5 provinces. The website also provided realtime stats using graphs, and future predictions using ML models
 
 **Introduction**
+
 The repository contains the source code of corona92.com website that was deployed in mid June 2020. We will be discussing the technology stack, GUI, and the salient features of the website
 
 **Technology Stack**
@@ -15,6 +16,9 @@ C# and Asp.net core 2.0 - ServerSide
 MSSQL Server - Database
 HTML, CSS,  Javascript, Bootstrap - Front End
 
+**Salient Features**
+
+The website highlighted on the day to day corona cases in every city of Pakistan. It made valuable predictions based on the data, the growth rate, death rate in each provice, city and overall country. It also described the strategies for the individuals to minimize the virus. 
 
 **Front End Interface**
 
