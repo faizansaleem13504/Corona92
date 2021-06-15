@@ -24,6 +24,8 @@ The website highlighted on the day to day corona cases in every city of Pakistan
 
 Following link is used to clone the source code of the system
 
+git clone https://github.com/faizansaleem13504/Corona92.git
+
 **Front End Interface**
 
 ![post1](https://user-images.githubusercontent.com/50497270/122135113-534e8c80-ce59-11eb-8320-ec54a4fa37b6.PNG)
