@@ -11,7 +11,9 @@ The repository contains the source code of corona92.com website that was deploye
 Following technology stack was used to implement the system
 
 C# and Asp.net core 2.0 - ServerSide
+
 MSSQL Server - Database
+
 HTML, CSS,  Javascript, Bootstrap - Front End
 
 **Salient Features**
