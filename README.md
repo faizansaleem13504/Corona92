@@ -32,7 +32,11 @@ git clone https://github.com/faizansaleem13504/Corona92.git
 
 ![post1](https://user-images.githubusercontent.com/50497270/122135113-534e8c80-ce59-11eb-8320-ec54a4fa37b6.PNG)
 
+**Stats Page**
+
 ![post2](https://user-images.githubusercontent.com/50497270/122135125-56e21380-ce59-11eb-9380-f0925dcd52f1.PNG)
+
+**Geographical Distribution of Cases**
 
 ![post3](https://user-images.githubusercontent.com/50497270/122135131-58abd700-ce59-11eb-888a-e75f449f2994.PNG)
 
