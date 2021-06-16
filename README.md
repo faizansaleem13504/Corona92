@@ -42,4 +42,6 @@ git clone https://github.com/faizansaleem13504/Corona92.git
 
 ![post4](https://user-images.githubusercontent.com/50497270/122135136-5b0e3100-ce59-11eb-841d-71cd729ed6e7.PNG)
 
+**Province Wise Distribution**
+
 ![post5](https://user-images.githubusercontent.com/50497270/122135141-5c3f5e00-ce59-11eb-8d47-96284a334a2a.PNG)
